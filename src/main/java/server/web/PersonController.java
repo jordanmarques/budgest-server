@@ -1,6 +1,6 @@
-package controller;
+package server.web;
 
-import pojo.Person;
+import server.domain.Person;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

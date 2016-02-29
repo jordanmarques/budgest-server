@@ -1,4 +1,4 @@
-package pojo;
+package server.domain;
 
 public class Person {
 
