@@ -1,17 +1,23 @@
 package server.web;
 
-import server.domain.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMethod;
+import server.model.Person;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import server.repository.PersonRepository;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/person")
 public class PersonController {
 
-    @RequestMapping("/person")
-    public Person person(@RequestParam(value="firstName") String firstName,
-                         @RequestParam(value="lastName") String lastName) {
+    @Autowired
+    private PersonRepository personRepository;
 
-        return new Person(1, firstName, lastName);
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Person> getAll() {
+        return personRepository.findAll();
     }
 }
