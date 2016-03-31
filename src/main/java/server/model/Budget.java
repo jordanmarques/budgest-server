@@ -6,40 +6,41 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @Entity
-public class Bugest {
+@Table (name = "budget")
+public class Budget {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @Column(name = "idBudget")
+    private long id;
 
-    @NotNull
     @Column(name = "global_amount")
     private float global_amount;
 
-    @NotNull
     @Column(name = "event")
     private String event;
 
-    @NotNull
     @Column(name = "category")
     private String category;
 
-    @NotNull
-    @Column(name = "Gérant")
+    @ManyToOne
+    @JoinColumn(name="idPerson")
     private Person manager;
 
-    public Bugest(String id, float global_amount,String event, String category,Person manager) {
+    public Budget(long id, float global_amount, String event, String category, Person manager) {
         this.id = id;
         this.global_amount = global_amount;
         this.event = event;
         this.category = category;
         this.manager = manager;
     }
+
+
 }
+

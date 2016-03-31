@@ -1,34 +1,38 @@
 package server.model;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @Entity
+@Table (name = "person")
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @Column(name = "idPerson")
+    private long personId;
 
-    @NotNull
     @Column(name = "first_name")
     private String firstName;
 
-    @NotNull
     @Column(name = "last_name")
     private String lastName;
 
-    public Person(String id, String firstName, String lastName) {
-        this.id = id;
+
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    private Set<Budget> budgets;
+
+
+
+    public Person(long id, String firstName, String lastName) {
+        this.personId = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
