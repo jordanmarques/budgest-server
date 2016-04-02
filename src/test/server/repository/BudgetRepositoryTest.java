@@ -14,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { BudgetRepositoryTest.DATASET })
 public class BudgetRepositoryTest extends AbstractRepositoryTest {
 
-    public static final String DATASET = "BudgetRepositoryTest.xml";
+    public static final String DATASET = "datasets/BudgetRepositoryTest.xml";
 
     @Autowired
     private BudgetRepository budgetRepository;
