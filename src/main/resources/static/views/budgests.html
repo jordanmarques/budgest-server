@@ -1,1 +1,61 @@
-<p>This is the budgests view.</p>
+<p>Liste des budgets : </p>
+
+<div class="col-md-6">
+    <div ng-hide="data_error">DATA FAIL</div>
+
+    <div class="container-fluid" ng-hide="data_success">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Sidebar content-->
+
+                <p>Rechercher un budget: <input ng-model="query"></p>
+                <br>
+
+
+            </div>
+            <div class="col-md-12">
+                <!--Body content-->
+
+                <ul class="budgests">
+                    <li ng-repeat="budgest in budgets | filter:query">
+                        <p>Évènement : {{budgest.event}}</p>
+                        <p>Catégorie : {{budgest.category}}</p>
+                        <p>Montant : {{budgest.global_amount}}</p>
+                        <p>Auteur : <a ng-href="#/persons/{{budgest.manager.personId}}"> {{budgest.manager.firstName}}
+                            {{budgest.manager.lastName}} </a></p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div  class="col-md-6">
+    <!--ng-show="budgest-add" -->
+    <p>Ajouter un nouveau budget :</p>
+
+    <form role="form">
+        <div class="form-group">
+            <label for="user">Utilisateur : </label>
+            <input type="text" class="form-control" id="user">
+        </div>
+        <div class="form-group">
+            <label for="category">Catégorie :</label>
+            <input type="text" class="form-control" id="category">
+        </div>
+        <div class="form-group">
+            <label for="event">Évènements :</label>
+            <input type="text" class="form-control" id="event">
+        </div>
+        <div class="form-group">
+            <label for="amount">Montant :</label>
+            <input type="text" class="form-control" id="amount">
+        </div>
+        <button type="submit" class="btn btn-default">Ajouter ce budget</button>
+    </form>
+
+    gsrsegdes
+
+</div>
