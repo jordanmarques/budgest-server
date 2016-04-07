@@ -23,4 +23,5 @@ public class BudgetRepositoryTest extends AbstractRepositoryTest {
     public void should_find_all_budgets(){
         assertThat(budgetRepository.findAll(), Matchers.hasSize(2));
     }
+
 }

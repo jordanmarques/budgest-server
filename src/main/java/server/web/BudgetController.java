@@ -1,23 +1,31 @@
 package server.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import server.model.Budget;
-import server.repository.BudgetRepository;
+import server.service.BudgetService;
 
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping("/budget")
 public class BudgetController {
 
     @Autowired
-    BudgetRepository budgetRepository;
+    BudgetService budgetService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Budget> getAll() {
-        return budgetRepository.findAll();
+        return budgetService.getAll();
+    }
+
+    @RequestMapping(method = POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Budget addBudget(@RequestBody Budget budget) throws Exception {
+        budgetService.addBudget(budget);
+        return budget;
     }
 }
