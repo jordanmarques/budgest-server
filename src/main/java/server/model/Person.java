@@ -24,8 +24,8 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idPerson")
-    private long personId;
+    @Column(name = "id_person")
+    private Long personId;
 
     @Column(name = "first_name")
     @NotNull
@@ -58,17 +58,5 @@ public class Person {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     @Null
     private Set<Budget> budgets;
-
-    // Similar to @AllArgsConstructor
-    /*public Person(long id, String firstName, String lastName, String pseudo, String password, Date birthdate, String phoneNumber, String mail) {
-        this.personId = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.pseudo = pseudo;
-        this.password = password;
-        this.birthdate = birthdate;
-        this.phoneNumber = phoneNumber;
-        this.mail = mail;
-    }*/
 
 }

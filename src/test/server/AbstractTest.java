@@ -1,4 +1,4 @@
-package server.repository;
+package server;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import org.junit.runner.RunWith;
@@ -18,5 +18,5 @@ import server.Application;
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
 @DirtiesContext
-public abstract class AbstractRepositoryTest extends AbstractJUnit4SpringContextTests {
+public abstract class AbstractTest extends AbstractJUnit4SpringContextTests {
 }

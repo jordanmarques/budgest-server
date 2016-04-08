@@ -22,10 +22,16 @@ public class BudgetController {
         return budgetService.getAll();
     }
 
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Budget getById(@PathVariable("id") Long id){
+        return  budgetService.getById(id);
+    }
+
     @RequestMapping(method = POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Budget addBudget(@RequestBody Budget budget) throws Exception {
-        budgetService.addBudget(budget);
-        return budget;
+        return budgetService.upsertBudget(budget);
     }
+
+
 }

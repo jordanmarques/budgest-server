@@ -7,22 +7,21 @@ import server.repository.BudgetRepository;
 
 import java.util.List;
 
-/**
- * Created by Yohan on 03/04/2016.
- */
-
 @Service
 public class BudgetService {
 
     @Autowired
     BudgetRepository budgetRepository;
 
-    public Budget addBudget(Budget budget)
-    {
+    public Budget upsertBudget(Budget budget) {
         return budgetRepository.save(budget);
     }
 
     public List<Budget> getAll() {
         return budgetRepository.findAll();
+    }
+
+    public Budget getById(Long id){
+        return budgetRepository.getOne(id);
     }
 }

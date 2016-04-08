@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import server.model.Budget;
 
 @Repository
-public interface BudgetRepository extends JpaRepository<Budget, String> {
+public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
 }
