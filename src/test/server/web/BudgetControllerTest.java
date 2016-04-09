@@ -32,7 +32,7 @@ public class BudgetControllerTest extends AbstractTest{
                 .get("/budget/1")
         .then()
                 .log().all()
-                .body("[0].name", Matchers.is("rockinCategory"));
+                .body("name", Matchers.is("rockinCategory"));
     }
 
     @Test
