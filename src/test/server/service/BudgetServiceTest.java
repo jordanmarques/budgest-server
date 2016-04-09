@@ -45,4 +45,10 @@ public class BudgetServiceTest extends AbstractTest {
         budgetService.upsertBudget(budget);
     }
 
+    @Test
+    public void should_delete_a_budget(){
+        budgetService.deleteBudget(1L);
+        assertThat(budgetService.getAll(), Matchers.hasSize(1));
+    }
+
 }
