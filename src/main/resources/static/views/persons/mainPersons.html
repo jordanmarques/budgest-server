@@ -4,18 +4,28 @@
     <div class="container-fluid" ng-hide="data_success">
         <div class="row">
 
+
             <div class="col-md-12">
                 <!--Body content-->
                 <div class="container">
                     <div class="well">
-                        <strong>Liste des personnes</strong>
+
+
+                        <div class="input-group">
+                            <input ng-model="query" type="text" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                         <button class="btn btn-default" type="button">Rechercher</button>
+                                    </span>
+                        </div><!-- /input-group -->
+
                     </div>
-                    <table class="table table-stripped">
+                    <table class="table table-bordered table-striped">
                         <tr>
                             <th>#id</th>
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Pseudo</th>
+                            <th>Action</th>
                             <!--       <th>Mail</th>
                                   <th>N° Téléphone</th>
                                   <th>Date d'anniverssaire</th> -->
@@ -27,15 +37,20 @@
                             <td>{{person.lastName}}</td>
                             <td>{{person.firstName}}</td>
                             <td>{{person.pseudo}}</td>
+                            <td><a href="#/persons/{{$index}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>
+                                <a href="#"> <span class="glyphicon-class">glyphicon glyphicon-remove</span> </a>
+
+                            </td>
                             <!--      <td>{{person.mail}}</td>
                                  <td>{{person.phoneNumber}}</td>
                                  <td>{{person.birthdate}}</td> -->
                         </tr>
 
                     </table>
-                    <!--  <tag:paginate max="15" offset="${offset}" count="{{persons.count}}"
-                                   uri="/person/list" next="&raquo;" previous="&laquo;" /> -->
+
                 </div>
+
+
 
 
 
@@ -43,3 +58,4 @@
         </div>
     </div>
 </div>
+
