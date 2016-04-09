@@ -53,4 +53,13 @@ public class BudgetControllerTest extends AbstractTest{
                 .log().all()
                 .body("name", Matchers.is(budgetName));
     }
+
+    @Test
+    public void should_delete_a_budget(){
+        RestAssured.when()
+                .delete("/budget/1")
+        .then()
+                .log().all()
+                .statusCode(200);
+    }
 }

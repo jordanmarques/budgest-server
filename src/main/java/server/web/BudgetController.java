@@ -8,6 +8,7 @@ import server.service.BudgetService;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -33,5 +34,10 @@ public class BudgetController {
         return budgetService.upsertBudget(budget);
     }
 
+    @RequestMapping(path = "/{id}", method = DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteBudget(@PathVariable("id") Long id){
+        budgetService.deleteBudget(id);
+    }
 
 }
