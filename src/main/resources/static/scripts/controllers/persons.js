@@ -7,32 +7,30 @@
  * # PersonsCtrl
  * Controller of the budGestApp
  */
+
+/**
+ * Created by Karthi on 09/04/2016.
+ */
+
+
+
+
 angular.module('budGestApp')
-    .controller('PersonsCtrl', function ($scope, $http) {
-        /*this.awesomeThings = [
-         'HTML5 Boilerplate',
-         'AngularJS',
-         'Karma'
-         ];*/
+.controller('PersonsCtrl', ['$scope', 'person','$routeParams', function($scope, person,$routeParams, $timeout, $modal, $log) {
+    person.success(function(data) {
+        $scope.data_error = true;
+        $scope.data_success = false;
+        $scope.persons = data;
 
-        //$scope.budgets = [{'@jsonId':1,'id':1,'global_amount':250.0,'event':'JOJOJOJOJO','category':'JOJOJOJO','manager':{'@jsonId':2,'personId':1,'firstName':'Jonathan','lastName':'Joestar','budgets':[1]}},{'@jsonId':3,'id':2,'global_amount':15656.8,'event':'acheter un arbre','category':'JOJOJOJOJO','manager':{'@jsonId':4,'personId':2,'firstName':'Joseph','lastName':'Joestar','budgets':[3]}}];
+        $scope.detail = data[$routeParams.id];
 
 
-        /*$http.get('budget').success(function (data) {
 
-         $scope.budgets = data;
-         });*/
 
-        $http.get('person')
-            .success(function (data) {
-                $scope.data_error = true;
-                $scope.data_success = false;
-                $scope.persons = data;
-            })
-            .error(function (fail_data) {
-                $scope.data_error = false;
-                $scope.data_success = true;
-                $scope.persons = data;
-            });
 
-    });
+    })
+
+}]);
+
+
+

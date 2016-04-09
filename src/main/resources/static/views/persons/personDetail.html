@@ -1,0 +1,18 @@
+
+
+<div>
+
+
+
+<ul class="list-group">
+    <li class="list-group-item active">Détail de la personne : </li>
+    <li class="list-group-item"><strong>Nom : </strong> {{ detail.lastName  }}</li>
+    <li class="list-group-item"><strong>Prénom : </strong> {{ detail.firstName  }}</li>
+    <li class="list-group-item"><strong>Pseudo :</strong>  {{ detail.pseudo  }}</li>
+    <li class="list-group-item"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;  {{ detail.mail  }}</li>
+    <li class="list-group-item"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;  {{ detail.phoneNumber  }}</li>
+    <li class="list-group-item"><span class="icon-large icon-birthday-cake" aria-hidden="true"></span>&nbsp;{{ detail.birthdate | date }}</li>
+</ul>
+
+</div>
+
