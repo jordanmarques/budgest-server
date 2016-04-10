@@ -25,7 +25,12 @@ angular
                 controllerAs: 'main'
             })
             .when('/persons', {
-                templateUrl: 'views/persons.html',
+                templateUrl: 'views/persons/mainPersons.html',
+                controller: 'PersonsCtrl',
+                controllerAs: 'persons'
+            })
+            .when('/persons/:id', {
+                templateUrl: 'views/persons/personDetail.html',
                 controller: 'PersonsCtrl',
                 controllerAs: 'persons'
             })

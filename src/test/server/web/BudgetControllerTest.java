@@ -32,7 +32,7 @@ public class BudgetControllerTest extends AbstractTest{
                 .get("/budget/1")
         .then()
                 .log().all()
-                .body("[0].name", Matchers.is("rockinCategory"));
+                .body("name", Matchers.is("rockinCategory"));
     }
 
     @Test
@@ -52,5 +52,14 @@ public class BudgetControllerTest extends AbstractTest{
         .then()
                 .log().all()
                 .body("name", Matchers.is(budgetName));
+    }
+
+    @Test
+    public void should_delete_a_budget(){
+        RestAssured.when()
+                .delete("/budget/1")
+        .then()
+                .log().all()
+                .statusCode(200);
     }
 }
