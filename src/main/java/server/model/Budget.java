@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table (name = "budget")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Budget {
 
     @Id
@@ -33,9 +33,6 @@ public class Budget {
     @Column(name = "global_amount")
     @DecimalMin(value = "1", message = "Amount must be equal or bigger than 1")
     private Float globalAmount;
-
-    @Column(name = "event")
-    private String event;
 
     @ManyToOne
     @JoinColumn(name="id_person")

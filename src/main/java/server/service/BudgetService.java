@@ -26,6 +26,6 @@ public class BudgetService {
     }
 
     public Budget getById(Long id){
-        return budgetRepository.getOne(id);
+        return budgetRepository.findOne(id);
     }
 }

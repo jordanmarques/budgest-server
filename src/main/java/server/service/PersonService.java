@@ -26,7 +26,7 @@ public class PersonService {
     }
 
     public Person getById(Long id){
-        return personRepository.getOne(id);
+        return personRepository.findOne(id);
     }
 
 }

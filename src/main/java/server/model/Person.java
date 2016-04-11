@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 @Table (name = "person")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
     @Id
@@ -55,5 +55,11 @@ public class Person {
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     private Set<Budget> budgets;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "person_event", joinColumns = {
+            @JoinColumn(name = "id_person", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "id_event", nullable = false, updatable = false)})
+    private Set<Event> events;
 
 }
