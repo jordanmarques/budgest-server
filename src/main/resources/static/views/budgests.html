@@ -1,5 +1,9 @@
 <p>Liste des budgets : </p>
-
+<style>
+    input.ng-touched.ng-invalid {
+        border-color: red;
+    }
+</style>
 <div class="col-md-6">
     <div ng-hide="data_error">DATA FAIL</div>
 
@@ -19,7 +23,7 @@
                 <ul class="budgests">
                     <li ng-repeat="budgest in budgets | filter:query">
                         <p>Évènement : {{budgest.event}}</p>
-                        <p>Catégorie : {{budgest.category}}</p>
+                        <p>Catégorie : {{budgest.name}}</p>
                         <p>Montant : {{budgest.global_amount}}</p>
                         <p>Auteur : <a ng-href="#/persons/{{budgest.manager.personId}}"> {{budgest.manager.firstName}}
                             {{budgest.manager.lastName}} </a></p>
@@ -32,28 +36,42 @@
 </div>
 
 
-<div  class="col-md-6">
+<div ng-controller="addBudget" class="col-md-6">
     <!--ng-show="budgest-add" -->
     <p>Ajouter un nouveau budget :</p>
 
-    <form role="form">
+    <form novalidate role="form" name="myForm">
         <div class="form-group">
             <label for="user">Utilisateur : </label>
-            <input type="text" class="form-control" id="user">
+            <input type="text" ng-model="budget.toto" required class="form-control" id="user">
+
         </div>
         <div class="form-group">
-            <label for="category">Catégorie :</label>
-            <input type="text" class="form-control" id="category">
+            <label for="name">Nom :</label>
+            <input type="text" ng-model="budget.name" required class="form-control" id="name">
         </div>
         <div class="form-group">
             <label for="event">Évènements :</label>
-            <input type="text" class="form-control" id="event">
+            <input type="text" ng-model="budget.event" required class="form-control" id="event">
         </div>
         <div class="form-group">
             <label for="amount">Montant :</label>
-            <input type="text" class="form-control" id="amount">
+            <input type="text" ng-model="budget.amount" required class="form-control" id="amount">
+
         </div>
-        <button type="submit" class="btn btn-default">Ajouter ce budget</button>
+        <div role="alert">
+        <span class="error" ng-show="myForm.$error.required">
+        Au moins un champ est vide !</span>
+        </div>
+
+        <button type="button" class="btn btn-default" ng-click="reset()">Reset</button>
+        <button type="submit" class="btn btn-default" ng-click="update(budget)" ng-disabled="myForm.$invalid">Ajouter ce budget</button>
     </form>
+
+
+    <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+    <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
+    <pre>user = {{budget | json}}</pre>
+    <pre>master = {{master | json}}</pre>
 
 </div>
