@@ -34,9 +34,6 @@ public class Budget {
     @DecimalMin(value = "1", message = "Amount must be equal or bigger than 1")
     private Float globalAmount;
 
-    @Column(name = "event")
-    private String event;
-
     @ManyToOne
     @JoinColumn(name="id_person")
     private Person manager;

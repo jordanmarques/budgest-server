@@ -56,4 +56,7 @@ public class Person {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     private Set<Budget> budgets;
 
+    @OneToMany(mappedBy = "personEventId.person", cascade = CascadeType.ALL)
+    private Set<PersonEvent> events;
+
 }
