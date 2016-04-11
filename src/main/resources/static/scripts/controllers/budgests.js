@@ -9,19 +9,6 @@
  */
 angular.module('budGestApp')
     .controller('BudgestsCtrl', function ($scope, $http) {
-        /*this.awesomeThings = [
-         'HTML5 Boilerplate',
-         'AngularJS',
-         'Karma'
-         ];*/
-
-        //$scope.budgets = [{'@jsonId':1,'id':1,'global_amount':250.0,'event':'JOJOJOJOJO','category':'JOJOJOJO','manager':{'@jsonId':2,'personId':1,'firstName':'Jonathan','lastName':'Joestar','budgets':[1]}},{'@jsonId':3,'id':2,'global_amount':15656.8,'event':'acheter un arbre','category':'JOJOJOJOJO','manager':{'@jsonId':4,'personId':2,'firstName':'Joseph','lastName':'Joestar','budgets':[3]}}];
-
-
-        /*$http.get('budget').success(function (data) {
-
-         $scope.budgets = data;
-         });*/
 
         $http.get('budget')
             .success(function (data) {
@@ -32,7 +19,7 @@ angular.module('budGestApp')
             .error(function (fail_data) {
                 $scope.data_error = false;
                 $scope.data_success = true;
-                $scope.budgets = data;
+                $scope.budgets = fail_data;
             });
 
     });
@@ -40,25 +27,73 @@ angular.module('budGestApp')
 
 angular.module('budGestApp')
     .controller('addBudget', function ($scope, $http) {
-        /*var user = $scope.budget.name;
-         var name = $scope.budget.name;
-         var event = $scope.budget.event;
-         var amount = $scope.budget.amount;*/
 
-        $scope.master = {};
+        $scope.dataObj = {};
 
-        $scope.update = function(budget) {
-            $scope.master = angular.copy(budget);
+        $scope.update = function (budget) {
+
+            $http.get('person/' + $scope.budget.user)
+                .success(function (data) {
+                    var user = data;
+
+                    $scope.dataObj = {
+                        name: $scope.budget.name,
+                        globalAmount: $scope.budget.global_amount,
+                        manager: {
+                            personId: user.personId,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            pseudo: user.pseudo,
+                            password: user.password,
+                            birthdate: user.birthdate,
+                            phoneNumber: user.phoneNumber,
+                            mail: user.mail
+                        }
+                    };
+
+                    $scope.addBudgetPost(user);
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la récupération de l\'utilisateur: ' + data.message);
+                });
         };
 
-        $scope.reset = function() {
-            $scope.budget = angular.copy($scope.master);
+        $scope.addBudgetPost = function (user) {
+            var data = {
+                name: $scope.budget.name,
+                globalAmount: $scope.budget.global_amount,
+                manager: {
+                    personId: user.personId,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    pseudo: user.pseudo,
+                    password: user.password,
+                    birthdate: user.birthdate,
+                    phoneNumber: user.phoneNumber,
+                    mail: user.mail
+                }
+            };
+
+            $http.post('budget/', data)
+                .success(function (data) {
+                    alert('Ce budget a bien été crée.');
+                    $scope.reset();
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de l\'ajout du budget : ' + data.message);
+                });
+        }
+
+        $scope.reset = function () {
+            $scope.budget = {};
         };
 
         $scope.reset();
 
     });
 
+
+//EXEMPLE DE SERVICE
 /*
  "use strict";
  angular.module('search-service', []).factory('searchService', function ($http) {

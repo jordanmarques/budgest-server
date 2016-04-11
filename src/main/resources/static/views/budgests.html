@@ -5,7 +5,7 @@
     }
 </style>
 <div class="col-md-6">
-    <div ng-hide="data_error">DATA FAIL</div>
+    <div ng-hide="data_error">Une erreur est survenue lors de la récupération des données</div>
 
     <div class="container-fluid" ng-hide="data_success">
         <div class="row">
@@ -22,9 +22,8 @@
 
                 <ul class="budgests">
                     <li ng-repeat="budgest in budgets | filter:query">
-                        <p>Évènement : {{budgest.event}}</p>
-                        <p>Catégorie : {{budgest.name}}</p>
-                        <p>Montant : {{budgest.global_amount}}</p>
+                        <p>Nom : {{budgest.name}}</p>
+                        <p>Montant : {{budgest.globalAmount}}</p>
                         <p>Auteur : <a ng-href="#/persons/{{budgest.manager.personId}}"> {{budgest.manager.firstName}}
                             {{budgest.manager.lastName}} </a></p>
                     </li>
@@ -43,7 +42,7 @@
     <form novalidate role="form" name="myForm">
         <div class="form-group">
             <label for="user">Utilisateur : </label>
-            <input type="text" ng-model="budget.toto" required class="form-control" id="user">
+            <input type="text" ng-model="budget.user" required class="form-control" id="user">
 
         </div>
         <div class="form-group">
@@ -51,12 +50,8 @@
             <input type="text" ng-model="budget.name" required class="form-control" id="name">
         </div>
         <div class="form-group">
-            <label for="event">Évènements :</label>
-            <input type="text" ng-model="budget.event" required class="form-control" id="event">
-        </div>
-        <div class="form-group">
-            <label for="amount">Montant :</label>
-            <input type="text" ng-model="budget.amount" required class="form-control" id="amount">
+            <label for="global_amount">Montant :</label>
+            <input type="numeric" ng-model="budget.global_amount" required class="form-control" id="global_amount">
 
         </div>
         <div role="alert">
@@ -69,9 +64,10 @@
     </form>
 
 
-    <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+    <!-- DEBUG VIEW -->
+    <!-- <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
     <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
-    <pre>user = {{budget | json}}</pre>
-    <pre>master = {{master | json}}</pre>
+    <pre>budget = {{budget | json}}</pre>
+    <pre>dataObj = {{dataObj | json}}</pre>-->
 
 </div>
