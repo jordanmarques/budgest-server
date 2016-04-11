@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Getter
@@ -25,12 +26,17 @@ public class Event {
     @Column(name = "id_event")
     private Long eventId;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "amount")
     private Float amount;
 
-    @OneToMany(mappedBy = "personEventId.event", cascade = CascadeType.ALL)
-    private Set<PersonEvent> persons;
+    @Column(name = "id_owner")
+    @NotNull
+    private Long ownerId;
 
-
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "events")
+    private Set<Person> persons;
 
 }
