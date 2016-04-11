@@ -13,13 +13,11 @@
 
     <budget id_budget="1"
             name="rockinCategory"
-            event="strongEvent"
             global_amount="300"
             id_person="1"/>
 
     <budget id_budget="2"
             name="anotherRockinCategory"
-            event="toManyStrongEvent"
             global_amount="400"
             id_person="1"/>
 
