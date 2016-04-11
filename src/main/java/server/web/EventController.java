@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import server.model.Budget;
 import server.model.Event;
+import server.model.Person;
 import server.service.BudgetService;
 import server.service.EventService;
 

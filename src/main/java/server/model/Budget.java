@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table (name = "budget")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Budget {
 
     @Id

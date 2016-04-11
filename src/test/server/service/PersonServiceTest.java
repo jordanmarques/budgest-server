@@ -27,6 +27,9 @@ public class PersonServiceTest extends AbstractTest {
     @Autowired
     private PersonService personService;
 
+    @Autowired
+    private EventService eventService;
+
     @Test
     public void should_find_all_persons(){
         assertThat(personService.getAll(), Matchers.hasSize(2));
@@ -187,5 +190,12 @@ public class PersonServiceTest extends AbstractTest {
                 //.budgets(new Set<Budget>())
                 .build();
         personService.upsertPerson(person);
+    }
+
+    @Test
+    public void should_not_delete_associated_event_when_a_person_is_deleted(){
+        personService.deletePerson(1L);
+        assertThat(personService.getAll(), Matchers.hasSize(1));
+        assertThat(eventService.getAll(), Matchers.hasSize(2));
     }
 }

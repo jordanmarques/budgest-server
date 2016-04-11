@@ -2,22 +2,22 @@
 <dataset>
 
     <person id_person="1"
-            birthdate="1890-06-16 00:00:00"
-            first_name="Stan"
-            last_name="Laurel"
-            mail="titi@machinbidule.com"
-            password="dudule"
+            birthdate="1965-03-21 21:21:02"
+            first_name="Jean"
+            last_name="Moulin"
+            mail="toto@gmail.com"
+            password="tata"
             phone_number="0632145896"
-            pseudo="Laurel"/>
+            pseudo="titi"/>
 
     <person id_person="2"
-            birthdate="1892-01-18 00:00:00"
-            first_name="Olivier"
-            last_name="Hardy"
-            mail="tutu@machinbidule.com"
-            password="totor"
-            phone_number="0632145896"
-            pseudo="Hardy"/>
+            birthdate="1965-03-21 21:21:02"
+            first_name="Toto"
+            last_name="Poney"
+            mail="poney@gmail.com"
+            password="myLittle"
+            phone_number="0612365478"
+            pseudo="unicorn"/>
 
     <event id_event="1"
            amount="1231"
@@ -34,4 +34,7 @@
 
     <person_event id_person="2"
                   id_event="1"/>
+
+
+
 </dataset>
