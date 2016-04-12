@@ -8,6 +8,7 @@ import com.jayway.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import server.AbstractTest;
+import server.AbstractTestIntegration;
 import server.model.Budget;
 import server.model.Person;
 
@@ -16,7 +17,7 @@ import java.util.HashSet;
 
 @DatabaseSetup(PersonControllerTest.DATASET)
 @DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { PersonControllerTest.DATASET })
-public class PersonControllerTest extends AbstractTest {
+public class PersonControllerTest extends AbstractTestIntegration {
 
     public static final String DATASET = "datasets/PersonControllerTest.xml";
 

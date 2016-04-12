@@ -9,12 +9,13 @@ import com.jayway.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import server.AbstractTest;
+import server.AbstractTestIntegration;
 import server.model.Budget;
 import server.model.Event;
 
 @DatabaseSetup(EventControllerTest.DATASET)
 @DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { EventControllerTest.DATASET })
-public class EventControllerTest extends AbstractTest{
+public class EventControllerTest extends AbstractTestIntegration {
 
     public static final String DATASET = "datasets/EventControllerTest.xml";
 
@@ -37,7 +38,7 @@ public class EventControllerTest extends AbstractTest{
     }
 
     @Test
-    public void should_insert_a_budget(){
+    public void should_insert_an_event(){
         String eventName = "insertedEvent";
 
         Event event = Event.builder()
@@ -57,7 +58,7 @@ public class EventControllerTest extends AbstractTest{
     }
 
     @Test
-    public void should_delete_a_budget(){
+    public void should_delete_an_event(){
         RestAssured.when()
                 .delete("/event/1")
         .then()
