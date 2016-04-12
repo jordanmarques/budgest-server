@@ -26,7 +26,11 @@ angular.module('budGestApp')
 
 
 angular.module('budGestApp')
-    .controller('addBudget', function ($scope, $http) {
+    .controller('addBudget', function ($scope, $http, person) {
+
+        person.success(function(data) {
+            $scope.persons = data;
+        });
 
         $scope.dataObj = {};
 

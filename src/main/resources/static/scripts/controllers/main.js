@@ -9,9 +9,11 @@
  */
 angular.module('budGestApp')
   .controller('MainCtrl', function () {
+    /*
+    A QUOI CA SERT????
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
-    ];
+    ];*/
   });
