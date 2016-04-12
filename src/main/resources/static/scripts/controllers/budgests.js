@@ -96,7 +96,22 @@ angular.module('budGestApp')
 
     });
 
+angular.module('budGestApp')
+    .controller('BudgestCtrl', function ($scope, $http, $routeParams) {
+        console.log($routeParams);
+        $http.get('budget/'+$routeParams.id)
+            .success(function (data) {
+                $scope.data_error = true;
+                $scope.data_success = false;
+                $scope.budget = data;
+            })
+            .error(function (fail_data) {
+                $scope.data_error = false;
+                $scope.data_success = true;
+                $scope.budget = fail_data;
+            });
 
+    });
 //EXEMPLE DE SERVICE
 /*
  "use strict";

@@ -35,8 +35,13 @@ angular
                 controllerAs: 'persons'
             })
             .when('/budgests', {
-                templateUrl: 'views/budgests.html',
+                templateUrl: 'views/budgests/budgests.html',
                 controller: 'BudgestsCtrl',
+                controllerAs: 'budgests'
+            })
+            .when('/budgests/:id', {
+                templateUrl: 'views/budgests/budgetDetail.html',
+                controller: 'BudgestCtrl',
                 controllerAs: 'budgests'
             })
             .when('/events', {
