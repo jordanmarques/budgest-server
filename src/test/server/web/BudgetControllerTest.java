@@ -9,11 +9,12 @@ import com.jayway.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import server.AbstractTest;
+import server.AbstractTestIntegration;
 import server.model.Budget;
 
 @DatabaseSetup(BudgetControllerTest.DATASET)
 @DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { BudgetControllerTest.DATASET })
-public class BudgetControllerTest extends AbstractTest{
+public class BudgetControllerTest extends AbstractTestIntegration {
 
     public static final String DATASET = "datasets/BudgetControllerTest.xml";
 
