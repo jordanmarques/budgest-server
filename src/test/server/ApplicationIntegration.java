@@ -15,7 +15,7 @@ public class ApplicationIntegration {
     public static String SERVERPORT = "9898";
 
      public static void main(String[] args) {
-         System.setProperty("server.port", "9898");
+         System.setProperty("server.port", SERVERPORT);
          System.setProperty("spring.datasource.url", "jdbc:hsqldb:mem:testdb");
          System.setProperty("spring.datasource.username", "");
          System.setProperty("spring.datasource.password", "");
