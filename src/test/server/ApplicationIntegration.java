@@ -2,6 +2,7 @@ package server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
@@ -11,7 +12,10 @@ public class ApplicationIntegration {
 
     private static ConfigurableApplicationContext run;
 
+    public static String SERVERPORT = "9898";
+
      public static void main(String[] args) {
+         System.setProperty("server.port", "9898");
          System.setProperty("spring.datasource.url", "jdbc:hsqldb:mem:testdb");
          System.setProperty("spring.datasource.username", "");
          System.setProperty("spring.datasource.password", "");
