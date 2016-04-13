@@ -97,8 +97,12 @@ angular.module('budGestApp')
     });
 
 angular.module('budGestApp')
-    .controller('BudgestCtrl', function ($scope, $http, $routeParams) {
-        console.log($routeParams);
+    .controller('BudgestCtrl', function ($scope, $http, $routeParams, person) {
+
+        person.success(function(data) {
+            $scope.persons = data;
+        });
+
         $http.get('budget/'+$routeParams.id)
             .success(function (data) {
                 $scope.data_error = true;
@@ -110,6 +114,28 @@ angular.module('budGestApp')
                 $scope.data_success = true;
                 $scope.budget = fail_data;
             });
+
+        $scope.update = function (budget) {
+
+            $http.post('budget', $scope.budget)
+                .success(function (data) {
+                    alert('Le budget a bien été mis à jours');
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la mise à jours du budget : ' + data.message);
+                });
+        };
+
+        $scope.delete = function (budget) {
+            $http.delete('budget/' + $routeParams.id)
+                .success(function (data) {
+                    alert('Le budget a bien supprimé');
+                    $location.path('/#/budgests')
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la suppression ddu budget : ' + data.message);
+                });
+        };
 
     });
 //EXEMPLE DE SERVICE
