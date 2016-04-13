@@ -111,6 +111,17 @@ angular.module('budGestApp')
                 $scope.budget = fail_data;
             });
 
+        $scope.update = function (budget) {
+
+            $http.post('budget', $scope.budget)
+                .success(function (data) {
+                    alert('Le budget a bien été mis à jours');
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la récupération de l\'utilisateur: ' + data.message);
+                });
+        };
+
     });
 //EXEMPLE DE SERVICE
 /*
