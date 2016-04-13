@@ -44,14 +44,13 @@ public class Event {
     @NotNull
     private Long ownerId;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "events")
     private Set<Person> persons;
 
-//    @Transient
-//    @JsonProperty
-//    public List<Atendee> getAtendees(){
-//        return persons.stream().map(Atendee::new).collect(Collectors.toList());
-//    }
+    @JsonProperty
+    public List<Atendee> getAtendees(){
+        return persons.stream().map(Atendee::new).collect(Collectors.toList());
+    }
 
 }
