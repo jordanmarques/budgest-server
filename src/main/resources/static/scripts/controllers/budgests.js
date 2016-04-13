@@ -122,7 +122,18 @@ angular.module('budGestApp')
                     alert('Le budget a bien été mis à jours');
                 })
                 .error(function (data) {
-                    alert('Une erreur est survenue lors de la récupération de l\'utilisateur: ' + data.message);
+                    alert('Une erreur est survenue lors de la mise à jours du budget : ' + data.message);
+                });
+        };
+
+        $scope.delete = function (budget) {
+            $http.delete('budget/' + $routeParams.id)
+                .success(function (data) {
+                    alert('Le budget a bien supprimé');
+                    $location.path('/#/budgests')
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la suppression ddu budget : ' + data.message);
                 });
         };
 
