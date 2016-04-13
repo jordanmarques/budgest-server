@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Entity
 @Table (name = "budget")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Budget {
 
@@ -34,6 +33,7 @@ public class Budget {
     @DecimalMin(value = "1", message = "Amount must be equal or bigger than 1")
     private Float globalAmount;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="id_person")
     private Person manager;

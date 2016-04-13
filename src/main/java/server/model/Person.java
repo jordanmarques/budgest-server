@@ -2,6 +2,7 @@ package server.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,7 +19,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table (name = "person")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
@@ -53,9 +53,11 @@ public class Person {
     @NotEmpty(message = "A person must have a mail")
     private String mail;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     private Set<Budget> budgets;
 
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "person_event", joinColumns = {
             @JoinColumn(name = "id_person", nullable = false, updatable = false) },
