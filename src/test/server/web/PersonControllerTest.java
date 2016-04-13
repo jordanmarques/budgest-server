@@ -22,8 +22,8 @@ import java.util.Date;
 import java.util.HashSet;
 
 
-@DatabaseSetup(EventControllerTest.DATASET)
-@DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { EventControllerTest.DATASET })
+@DatabaseSetup(PersonControllerTest.DATASET)
+@DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { PersonControllerTest.DATASET })
 public class PersonControllerTest extends AbstractTestIntegration {
 
     @Autowired
