@@ -2,11 +2,14 @@ package server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
 
 @SpringBootApplication
 public class ApplicationIntegration {
+
+    private static ConfigurableApplicationContext run;
 
      public static void main(String[] args) {
          System.setProperty("spring.datasource.url", "jdbc:hsqldb:mem:testdb");
@@ -15,6 +18,10 @@ public class ApplicationIntegration {
          System.setProperty("spring.jpa.database", "hsql");
          System.setProperty("spring.jpa.show-sql", "true");
          System.setProperty("spring.jpa.hibernate.ddl-auto", "create");
-         SpringApplication.run(ApplicationIntegration.class, args);
+         run = SpringApplication.run(ApplicationIntegration.class, args);
      }
+
+    public static void exit(int code) {
+        SpringApplication.exit(run, () -> code);
+    }
 }

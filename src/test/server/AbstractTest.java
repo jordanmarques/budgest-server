@@ -1,6 +1,8 @@
 package server;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
@@ -14,9 +16,10 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = ApplicationIntegration.class)
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
 @DirtiesContext
 public abstract class AbstractTest extends AbstractJUnit4SpringContextTests {
+
 }

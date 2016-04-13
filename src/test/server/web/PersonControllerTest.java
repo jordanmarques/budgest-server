@@ -6,18 +6,60 @@ import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import org.hamcrest.Matchers;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import server.AbstractTest;
 import server.AbstractTestIntegration;
+import server.ApplicationIntegration;
 import server.model.Budget;
 import server.model.Person;
+import server.service.PersonService;
 
 import java.util.Date;
 import java.util.HashSet;
 
-@DatabaseSetup(PersonControllerTest.DATASET)
-@DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { PersonControllerTest.DATASET })
+
+@DatabaseSetup(EventControllerTest.DATASET)
+@DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = { EventControllerTest.DATASET })
 public class PersonControllerTest extends AbstractTestIntegration {
+
+    @Autowired
+    private PersonService personService;
+
+//    @Before
+//    public void insertPersons(){
+//        Person person = Person.builder()
+//                .personId(1L)
+//                .birthdate(new Date(116, 4, 9))
+//                .firstName("Stan")
+//                .lastName("Laurel")
+//                .mail("titi@machinbidule.com")
+//                .password("dudule")
+//                .phoneNumber("0632145896")
+//                .pseudo("Laurel").build();
+//
+//        Person person2 = Person.builder()
+//                .personId(2L)
+//                .birthdate(new Date(116, 4, 9))
+//                .firstName("Olivier")
+//                .lastName("Hardy")
+//                .mail("tutu@machinbidule.com")
+//                .password("totor")
+//                .phoneNumber("0632145896")
+//                .pseudo("Hardy").build();
+//
+//        personService.upsertPerson(person);
+//        personService.upsertPerson(person2);
+//    }
+//
+//    @After
+//    public void deletePersons(){
+//        personService.deletePerson(1L);
+//        personService.deletePerson(2L);
+//    }
 
     public static final String DATASET = "datasets/PersonControllerTest.xml";
 
