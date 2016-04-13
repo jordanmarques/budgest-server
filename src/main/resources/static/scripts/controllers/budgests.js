@@ -97,8 +97,12 @@ angular.module('budGestApp')
     });
 
 angular.module('budGestApp')
-    .controller('BudgestCtrl', function ($scope, $http, $routeParams) {
-        console.log($routeParams);
+    .controller('BudgestCtrl', function ($scope, $http, $routeParams, person) {
+
+        person.success(function(data) {
+            $scope.persons = data;
+        });
+
         $http.get('budget/'+$routeParams.id)
             .success(function (data) {
                 $scope.data_error = true;
