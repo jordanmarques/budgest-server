@@ -7,5 +7,29 @@
 
 
 <div class="col-md-6">
+    <form novalidate role="form" name="myForm">
+        <div class="form-group">
+            <label for="user">Utilisateur : </label>
+            <select name="repeatSelect" id="user" ng-model="budget.manager.personId" required class="form-control">
+                <option ng-repeat="person in persons" value="{{person.personId}}">{{person.firstName}} {{person.lastName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Nom :</label>
+            <input type="text" ng-model="budget.name" required class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="global_amount">Montant :</label>
+            <input type="numeric" ng-model="budget.globalAmount" required class="form-control" id="global_amount">
+        </div>
+        <div role="alert">
+        <span class="error" ng-show="myForm.$error.required">
+        Au moins un champ est vide !</span>
+        </div>
 
+        <button type="submit" class="btn btn-default" ng-click="update(budget)" ng-disabled="myForm.$invalid">Mettre à jours ce
+            budget
+        </button>
+        <button type="button" class="btn btn-danger" ng-click="delete(budget)" >Supprimer ce budget</button>
+    </form>
 </div>
