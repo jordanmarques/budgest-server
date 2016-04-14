@@ -1,20 +1,22 @@
 package server.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.NotEmpty;
+import server.dto.Atendee;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -23,7 +25,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "event")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
 
@@ -44,7 +45,16 @@ public class Event {
     @NotNull
     private Long ownerId;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "events")
     private Set<Person> persons;
+
+    @JsonProperty
+    public List<Atendee> getAtendees(){
+        if(null != persons){
+            return persons.stream().map(Atendee::new).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
+    }
 
 }

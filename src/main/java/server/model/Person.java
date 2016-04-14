@@ -2,6 +2,7 @@ package server.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,7 +19,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table (name = "person")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jsonId")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
