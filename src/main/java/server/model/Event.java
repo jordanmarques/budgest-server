@@ -13,6 +13,7 @@ import server.dto.Atendee;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,7 +51,10 @@ public class Event {
 
     @JsonProperty
     public List<Atendee> getAtendees(){
-        return persons.stream().map(Atendee::new).collect(Collectors.toList());
+        if(null != persons){
+            return persons.stream().map(Atendee::new).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 
 }
