@@ -16,19 +16,18 @@ angular.module('budGestApp')
                 $scope.data_success = false;
                 $scope.budgets = data;
             })
-            .error(function (fail_data) {
+            .error(function () {
                 $scope.data_error = false;
                 $scope.data_success = true;
-                $scope.budgets = fail_data;
             });
 
     });
 
 
 angular.module('budGestApp')
-    .controller('addBudget', function ($scope, $http, person) {
+    .controller('addBudget', function ($scope, $http, person, $route) {
 
-        person.success(function(data) {
+        person.success(function (data) {
             $scope.persons = data;
         });
 
@@ -81,7 +80,8 @@ angular.module('budGestApp')
             $http.post('budget/', data)
                 .success(function (data) {
                     alert('Ce budget a bien été crée.');
-                    $scope.reset();
+                    //$scope.reset();
+                    $route.reload();
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de l\'ajout du budget : ' + data.message);
@@ -97,22 +97,27 @@ angular.module('budGestApp')
     });
 
 angular.module('budGestApp')
-    .controller('BudgestCtrl', function ($scope, $http, $routeParams, person) {
+    .controller('BudgestCtrl', function ($scope, $http, $routeParams, person, $route, $location) {
 
-        person.success(function(data) {
-            $scope.persons = data;
-        });
+        person
+            .success(function (data) {
+                $scope.persons = data;
+            });
 
-        $http.get('budget/'+$routeParams.id)
+        /*.error(function () {
+         alert('Ce budget n\'existe pas !');
+         $location.path('#/budgests');
+         });*/
+
+        $http.get('budget/' + $routeParams.id)
             .success(function (data) {
                 $scope.data_error = true;
                 $scope.data_success = false;
                 $scope.budget = data;
             })
-            .error(function (fail_data) {
-                $scope.data_error = false;
-                $scope.data_success = true;
-                $scope.budget = fail_data;
+            .error(function () {
+                alert('Ce budget n\'existe pas !');
+                $location.path('#/budgests');
             });
 
         $scope.update = function (budget) {
@@ -120,6 +125,7 @@ angular.module('budGestApp')
             $http.post('budget', $scope.budget)
                 .success(function (data) {
                     alert('Le budget a bien été mis à jours');
+                    $route.reload();
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de la mise à jours du budget : ' + data.message);
@@ -130,7 +136,7 @@ angular.module('budGestApp')
             $http.delete('budget/' + $routeParams.id)
                 .success(function (data) {
                     alert('Le budget a bien supprimé');
-                    $location.path('/#/budgests')
+                    $location.path('#/budgests');
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de la suppression ddu budget : ' + data.message);

@@ -5,7 +5,7 @@
     }
 </style>
 <div class="col-md-8">
-    <div ng-hide="data_error">Une erreur est survenue lors de la récupération des données</div>
+    <div ng-hide="data_error">Une erreur est survenue lors de la récupération des données.</div>
 
     <div class="container-fluid" ng-hide="data_success">
         <p>Rechercher un budget: <input ng-model="query"></p>
@@ -59,17 +59,16 @@
         Au moins un champ est vide !</span>
         </div>
 
-        <button type="button" class="btn btn-default" ng-click="reset()">Reset</button>
-        <button type="submit" class="btn btn-default" ng-click="update(budget)" ng-disabled="myForm.$invalid">Ajouter ce
-            budget
-        </button>
+        <button type="button" class="btn btn-default" ng-click="reset()">Annuler</button>
+        <button type="submit" class="btn btn-default" ng-click="update(budget)" ng-disabled="myForm.$invalid">Valider</button>
     </form>
 
 
-    <!-- DEBUG VIEW -->
+    <!-- DEBUG VIEW
     <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
     <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
     <pre>budget = {{budget | json}}</pre>
     <pre>dataObj = {{dataObj | json}}</pre>
+    -->
 
 </div>

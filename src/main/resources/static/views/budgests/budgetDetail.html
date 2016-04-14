@@ -1,8 +1,14 @@
+    <div ng-hide="data_error">Une erreur est survenue lors de la récupération des données.</div>
+
 <div class="col-md-6">
 
-    Nom : {{budget.name}}<br>
-    Montant : {{budget.globalAmount}}<br>
-    Propriétaire : {{budget.manager.firstName}} {{budget.manager.lastName}}<br>
+    <a class="list-group-item active" href="#">
+        Détail du budget
+    </a>
+    <a class="list-group-item" href="#">Nom : {{budget.name}}</a>
+    <a class="list-group-item" href="#">Montant : {{budget.globalAmount}}</a>
+    <a class="list-group-item" href="#">Propriétaire : {{budget.manager.firstName}} {{budget.manager.lastName}}</a>
+</div>
 </div>
 
 
