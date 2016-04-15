@@ -54,8 +54,9 @@ public class Person {
     private String mail;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.MERGE)
     private Set<Budget> budgets;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "person_event", joinColumns = {
