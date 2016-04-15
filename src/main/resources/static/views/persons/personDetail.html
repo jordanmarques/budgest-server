@@ -37,7 +37,7 @@
             <th>Action</th>
         </tr>
 
-        <tr  ng-repeat="budget in person.budgets | filter:query" >
+        <tr  ng-repeat="budget in detail.budgets | filter:query" >
             <th>{{budget.budgetId}}</th>
             <td>{{budget.name}}</td>
             <td>{{budget.globalAmount}}</td>
