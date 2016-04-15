@@ -45,7 +45,7 @@ public class Event {
     @NotNull
     private Long ownerId;
 
-    @JsonBackReference(value = "manage_person_event")
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "events")
     private Set<Person> persons;
 
