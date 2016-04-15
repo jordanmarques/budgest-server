@@ -16,7 +16,7 @@
 
 
 angular.module('budGestApp')
-.controller('PersonsCtrl', ['$scope', 'person','$routeParams', function($scope, person,$routeParams, $timeout, $modal, $log) {
+.controller('PersonsCtrl', ['$scope', 'person','$routeParams', function($scope, person,$routeParams) {
     person.success(function(data) {
         $scope.data_error = true;
         $scope.data_success = false;
@@ -31,6 +31,4 @@ angular.module('budGestApp')
     })
 
 }]);
-
-
 

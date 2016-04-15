@@ -1,11 +1,16 @@
-<div class="col-md-6">
+<ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li class="active">Personnes</li>
+</ol>
+
+<div>
     <div ng-hide="data_error">DATA FAIL</div>
 
     <div class="container-fluid" ng-hide="data_success">
         <div class="row">
 
 
-            <div class="col-md-12">
+            <div >
                 <!--Body content-->
                 <div class="container">
                     <div class="well">
@@ -38,7 +43,8 @@
                             <td>{{person.pseudo}}</td>
                             <td><a href="#/persons/{{$index}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
                                 <a href="#"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                                <a href="#"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
+                                <a href="#" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
+                                <button type="button" class="btn btn-danger" ng-click="delete(person)" >Supprimer cette personne</button>
                             </td>
                         </tr>
                     </table>
@@ -57,61 +63,61 @@
 
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModalForPerson" tabindex="-1" role="dialog" aria-labelledby="myModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
                                 <h4 class="modal-title" id="myModalLabel">Ajouter une nouvelle personne :</h4>
                             </div>
+                            <form role="form" name="myForm">
                             <div class="modal-body">
 
                                     <!--ng-show="budgest-add" -->
 
 
-                                    <form role="form">
+
                                         <div class="form-group">
-                                            <label for="nom">Nom : </label>
-                                            <input type="text" class="form-control" id="nom">
+                                            <label for="lastName">Nom : </label>
+                                            <input type="text" class="form-control" id="lastName" ng-model="person.lastName" required >
                                         </div>
                                         <div class="form-group">
-                                            <label for="prenom">Prénom :</label>
-                                            <input type="text" class="form-control" id="prenom">
+                                            <label for="firstName">Prénom :</label>
+                                            <input type="text" class="form-control" id="firstName" ng-model="person.firstName" required >
                                         </div>
                                         <div class="form-group">
                                             <label for="pseudo">Pseudo :</label>
-                                            <input type="text" class="form-control" id="pseudo">
+                                            <input type="text" class="form-control" id="pseudo" ng-model="person.pseudo" required >
                                         </div>
                                         <div class="form-group">
-                                            <label for="pwd">Mot de passe :</label>
-                                            <input type="password" class="form-control" id="pwd">
+                                            <label for="password">Mot de passe :</label>
+                                            <input type="password" class="form-control" id="password" ng-model="person.password" required >
                                         </div>
                                         <div class="form-group">
                                             <label for="mail">Mail :</label>
-                                            <input type="text" class="form-control" id="mail">
+                                            <input type="text" class="form-control" id="mail" ng-model="person.mail" required >
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="number">N° de Tél :</label>
-                                            <input type="text" class="form-control" id="number">
+                                            <label for="phoneNumber">N° de Tél :</label>
+                                            <input type="text" class="form-control" id="phoneNumber" ng-model="person.phoneNumber" required >
                                         </div>
                                         <div class="form-group">
-                                            <label for="date">Date d'anniversaire :</label>
-                                            <input type="date" class="form-control" id="date">
+                                            <label for="birthdate">Date d'anniversaire :</label>
+                                            <input type="date" class="form-control" id="birthdate" ng-model="person.birthdate" required >
 
                                         </div>
 
-                                    </form>
+                                <div role="alert">
+                                    <span class="error" ng-show="myForm.$error.required">
+                                    Au moins un champ est vide !</span>
+                                </div>
 
 
                             </div>
-                            <div class="modal-footer">
+
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                                <button type="button" class="btn btn-primary">Ajouter</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <button type="button" class="btn btn-primary" ng-click="update(person)" ng-disabled="myForm.$invalid">Ajouter</button>
+
+
+                            </form>
+
 
 
 
