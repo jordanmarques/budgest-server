@@ -53,6 +53,7 @@ public class Person {
     @NotEmpty(message = "A person must have a mail")
     private String mail;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     private Set<Budget> budgets;
 
