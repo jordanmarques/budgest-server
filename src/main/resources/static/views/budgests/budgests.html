@@ -14,15 +14,12 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Montant</th>
-                <th>Auteur</th>
                 <th>Détails</th>
             </tr>
             <tr ng-repeat="budgest in budgets | filter:query">
                 <td>{{budgest.budgetId}}</td>
                 <td>{{budgest.name}}</td>
                 <td>{{budgest.globalAmount}}</td>
-                <td><a ng-href="#/persons/{{budgest.manager.personId}}"> {{budgest.manager.firstName}}
-                    {{budgest.manager.lastName}} </a></td>
                 <td><a href="#/budgests/{{budgest.budgetId}}"><button type="button" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-info-sign"></span> Détails
                 </button></a></td>
