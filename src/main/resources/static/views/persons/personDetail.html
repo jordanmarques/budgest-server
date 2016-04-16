@@ -23,7 +23,7 @@
 
 
 
-<button type="button" class="btn btn-danger" ng-click="delete(detail)" >Supprimer cette personne</button>
+
 
 
 <div class="panel panel-success">
@@ -51,7 +51,7 @@
 
 
 
-<div class="panel panel-success">
+<div class="panel panel-info"">
     <div class="panel-heading">Évènement associé à {{ detail.firstName  }} {{ detail.lastName  }} </div>
 
     <table class="table">
@@ -102,3 +102,6 @@
         </button>
     </form>
 </div>
+
+
+<button type="button" class="btn btn-danger" ng-click="DeletePerson(detail.personId)" >Supprimer cette personne</button>
