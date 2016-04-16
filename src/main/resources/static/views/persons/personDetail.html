@@ -23,12 +23,12 @@
 
 
 
+<button type="button" class="btn btn-danger" ng-click="delete(detail)" >Supprimer cette personne</button>
+
 
 <div class="panel panel-success">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Budget associé à {{ person.lastName  }} {{ detail.firstName  }} </div>
+    <div class="panel-heading">Budget associé à {{ detail.firstName  }} {{ detail.lastName  }}  </div>
 
-    <!-- Table -->
     <table class="table">
         <tr>
             <th>#id</th>
@@ -49,4 +49,27 @@
     </table>
 </div>
 
-<button type="button" class="btn btn-danger" ng-click="delete(detail)" >Supprimer cette personne</button>
+
+
+<div class="panel panel-success">
+    <div class="panel-heading">Évènement associé à {{ detail.firstName  }} {{ detail.lastName  }} </div>
+
+    <table class="table">
+        <tr>
+            <th>#id</th>
+            <th>Nom</th>
+            <th>Montant</th>
+            <th>Action</th>
+        </tr>
+
+        <tr  ng-repeat="event in detail.events | filter:query" >
+            <th>{{event.eventId}}</th>
+            <td>{{event.name}}</td>
+            <td>{{event.amount}}</td>
+            <td><a href="#/budgests/{{budget.budgetId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+                <!--<a href=""> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>-->&nbsp;&nbsp;
+                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="delete(budget)" ></span> </a>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -43,11 +43,11 @@ angular.module('budGestApp')
                 $scope.data_error = true;
                 $scope.data_success = false;
                 $scope.detail = data;
-            });
-       /*     .error(function () {                                          REgard ça Faisal, quand j'enleve le commentaire, j'ai à chaque fois un popup http://localhost:8080/person/undefined
-                alert('Ce person n\'existe pas !');                         si t'as le temps de jeter un coup d'oeil, Merci d'avance
+            })
+          .error(function () {
+                alert('Ce person n\'existe pas !');
                 $location.path('#/Persons');
-            });*/
+            });
 
 
         $scope.DeleteData = function (idx) {
