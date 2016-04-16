@@ -65,5 +65,16 @@ angular.module('budGestApp')
                 });
         };
 
+        $scope.delete = function (budget) {
+            $http.delete('budget/' + budget.budgetId)
+                .success(function () {
+                    alert('Le budget a bien supprimé');
+                    $route.reload();
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la suppression ddu budget : ' + data.message);
+                });
+        };
+
     });
 
