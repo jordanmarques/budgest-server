@@ -41,10 +41,9 @@
                             <td>{{person.lastName}}</td>
                             <td>{{person.firstName}}</td>
                             <td>{{person.pseudo}}</td>
-                            <td><a href="#/persons/{{$index}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+                            <td><a href="#/persons/{{person.personId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
                                 <a href="#"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                                <a href="#" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
-                                <button type="button" class="btn btn-danger" ng-click="delete(person)" >Supprimer cette personne</button>
+                                <a ng-click="DeleteData(person.personId)" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
                             </td>
                         </tr>
                     </table>
