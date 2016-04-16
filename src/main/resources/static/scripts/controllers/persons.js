@@ -30,7 +30,7 @@ angular.module('budGestApp')
 
 
 angular.module('budGestApp')
-    .controller('PersonsCtrl', function ($scope, $http, $routeParams, person, $route, $location) {
+    .controller('PersonCtrl', function ($scope, $http, $routeParams, person, $route, $location) {
 
         person
             .success(function (data) {
@@ -43,11 +43,11 @@ angular.module('budGestApp')
                 $scope.data_error = true;
                 $scope.data_success = false;
                 $scope.detail = data;
-            });
-          /*.error(function () {
+            })
+            .error(function () {
                 alert('Ce person n\'existe pas !');
                 $location.path('#/Persons');
-            });*/
+            });
 
 
         $scope.DeleteData = function (idx) {
@@ -79,7 +79,7 @@ angular.module('budGestApp')
 
         //EVENT
 
-        
+
         $scope.updateEventShow = function (event) {
             $scope.event_update = true;
             $scope.eventUpdate = event;

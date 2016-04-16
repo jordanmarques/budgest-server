@@ -31,7 +31,7 @@ angular
             })
             .when('/persons/:id', {
                 templateUrl: 'views/persons/personDetail.html',
-                controller: 'PersonsCtrl',
+                controller: 'PersonCtrl',
                 controllerAs: 'persons'
             })
             .when('/budgests', {
