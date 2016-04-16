@@ -43,11 +43,11 @@ angular.module('budGestApp')
                 $scope.data_error = true;
                 $scope.data_success = false;
                 $scope.detail = data;
-            })
-          .error(function () {
+            });
+          /*.error(function () {
                 alert('Ce person n\'existe pas !');
                 $location.path('#/Persons');
-            });
+            });*/
 
 
         $scope.DeleteData = function (idx) {
@@ -73,6 +73,27 @@ angular.module('budGestApp')
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de la suppression ddu budget : ' + data.message);
+                });
+        };
+
+
+        //EVENT
+
+        
+        $scope.updateEventShow = function (event) {
+            $scope.event_update = true;
+            $scope.eventUpdate = event;
+        };
+
+        $scope.updateEventAction = function (event) {
+            delete event.atendees;
+            $http.post('event/', event)
+                .success(function () {
+                    alert('L\'évènement a bien été mis à jours !');
+                    $route.reload();
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la mise à jours de l\'évènement : ' + data.message);
                 });
         };
 

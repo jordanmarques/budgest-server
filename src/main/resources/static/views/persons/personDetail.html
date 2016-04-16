@@ -37,7 +37,7 @@
             <th>Action</th>
         </tr>
 
-        <tr  ng-repeat="budget in detail.budgets | filter:query" >
+        <tr  ng-repeat="budget in detail.budgets" >
             <th>{{budget.budgetId}}</th>
             <td>{{budget.name}}</td>
             <td>{{budget.globalAmount}}</td>
@@ -62,14 +62,43 @@
             <th>Action</th>
         </tr>
 
-        <tr  ng-repeat="event in detail.events | filter:query" >
+        <tr  ng-repeat="event in detail.events" >
             <th>{{event.eventId}}</th>
             <td>{{event.name}}</td>
             <td>{{event.amount}}</td>
-            <td><a href="#/budgests/{{budget.budgetId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                <!--<a href=""> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>-->&nbsp;&nbsp;
-                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="delete(budget)" ></span> </a>
+            <td><div ng-if="event.ownerId = detail.personId">
+                <a class="glyphicon glyphicon-th-list" aria-hidden="true"  ng-click="updateEventShow(event)" ></a>&nbsp;&nbsp;
+                <!--<a href="#/events/{{event.budgetId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+                <a href=""> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>-->&nbsp;&nbsp;
+                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="delete(event)" ></span> </a>
+            </div>
             </td>
         </tr>
     </table>
+</div>
+
+<div ng-show="event_update">
+    {{$scope.event_update}}
+    Modification de l'évènement :
+
+    <form novalidate role="form" name="updateEventForm">
+        <div class="form-group">
+            <label for="name">Nom :</label>
+            <input type="text" ng-model="eventUpdate.name" required class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="global_amount">Montant :</label>
+            <input type="numeric" ng-model="eventUpdate.amount" required class="form-control" id="global_amount">
+
+        </div>
+        <div role="alert">
+        <span class="error" ng-show="addEventForm.$error.required">
+        Au moins un champ est vide !</span>
+        </div>
+
+        <button type="button" class="btn btn-default" ng-click="reset()">Annuler</button>
+        <button type="submit" class="btn btn-default" ng-click="updateEventAction(eventUpdate)" ng-disabled="myForm.$invalid">Créer un
+            évènement
+        </button>
+    </form>
 </div>
