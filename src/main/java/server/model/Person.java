@@ -1,9 +1,7 @@
 package server.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -39,8 +37,8 @@ public class Person {
     @NotEmpty(message = "A person must have a pseudonym")
     private String pseudo;
 
-    @Column(name = "password")      // TODO => encrypt the password
-    @NotNull                        // Can be empty ???
+    @Column(name = "password")
+    @NotNull
     private String password;
 
     @Column(name = "birthdate")
@@ -54,7 +52,7 @@ public class Person {
     private String mail;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "manager", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Budget> budgets;
 
 
