@@ -42,7 +42,7 @@ angular.module('budGestApp')
         };
 
 
-        /*****/
+
 
         $scope.addPersonPost = function (person) {
             var dataPerson = {
@@ -63,7 +63,8 @@ angular.module('budGestApp')
                 .success(function (data) {
                     alert('Cette personne a été ajouter avec succès');
                     //$scope.reset();
-                    $route.reload();
+                    //$route.reload();
+                    $location.path('#/Persons');
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de l\'ajout de cette personne : ' + data.message);
@@ -91,10 +92,10 @@ angular.module('budGestApp')
                 $scope.data_success = false;
                 $scope.detail = data;
             })
-            .error(function () {
-                alert('Ce person n\'existe pas !');
+        /*    .error(function () {
+                alert('Cette person n\'existe pas !');
                 $location.path('#/Persons');
-            });
+            }); */
 
 
         $scope.DeletePerson = function (idx) {
@@ -161,4 +162,5 @@ angular.module('budGestApp')
         };
 
     });
+
 

@@ -1,6 +1,7 @@
 <ol class="breadcrumb">
     <li><a href="#/">Home</a></li>
     <li class="active">Personnes</li>
+    <li><a href="#/persons/add">Ajouter</a></li>
 </ol>
 
 <div>
@@ -42,8 +43,8 @@
                             <td>{{person.firstName}}</td>
                             <td>{{person.pseudo}}</td>
                             <td><a href="#/persons/{{person.personId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                                <a href="#/persons/{{person.personId}}" > <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                                <a ng-click="DeletePerson(person.personId)" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
+                                <a href="#/persons/{{person.personId}}/update" > <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+                                <a href="" ng-click="DeletePerson(person.personId)" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
                             </td>
                         </tr>
                     </table>
@@ -53,68 +54,6 @@
 
 
 
-                <!-- Form for add person -->
-
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Ajouter une nouvelle personne :</h3>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="col-md-6">
-                            <form novalidate role="form" name="myForm">
-
-
-
-
-
-                            <div class="form-group">
-                                <label for="lastName">Nom : </label>
-                                <input type="text" class="form-control" id="lastName" ng-model="person.lastName" required >
-                            </div>
-                            <div class="form-group">
-                                <label for="firstName">Prénom :</label>
-                                <input type="text" class="form-control" id="firstName" ng-model="person.firstName" required >
-                            </div>
-                            <div class="form-group">
-                                <label for="pseudo">Pseudo :</label>
-                                <input type="text" class="form-control" id="pseudo" ng-model="person.pseudo" required >
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Mot de passe :</label>
-                                <input type="password" class="form-control" id="password" ng-model="person.password" required >
-                            </div>
-                            <div class="form-group">
-                                <label for="mail">Mail :</label>
-                                <input type="text" class="form-control" id="mail" ng-model="person.mail" required >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phoneNumber">N° de Tél :</label>
-                                <input type="numeric" class="form-control" id="phoneNumber" ng-model="person.phoneNumber" required >
-                            </div>
-                            <div class="form-group">
-                                <label for="birthdate">Date d'anniversaire :</label>
-                                <input type="date" class="form-control" id="birthdate" ng-model="person.birthdate" required >
-
-                            </div>
-
-                            <div role="alert">
-                                    <span class="error" ng-show="myForm.$error.required">
-                                    Au moins un champ est vide !</span>
-                            </div>
-
-
-
-
-                            <button type="button" class="btn btn-primary" ng-click="addPersonPost(person)" >Ajouter cette personne</button>
-
-
-                        </form>
-
-                        </div>
-                    </div>
-                </div>
 
 
 
