@@ -87,34 +87,12 @@ angular.module('budGestApp')
 
 
 
-
-
-        /*
-
-
-         */
-
-
-
-
-
-
-
         $http.get('person/' + $routeParams.id)
             .success(function (data) {
                 $scope.data_error = true;
                 $scope.data_success = false;
                 $scope.detail = data;
-
-
-                $scope.$watch('mydateOfBirth', function (newValue) {
-                    $scope.detail.birthdate = $filter('date')(newValue, 'yyyy/MM/dd');
-                });
-
-                $scope.$watch('workerDetail.dateOfBirth', function (newValue) {
-                    $scope.mydateOfBirth = $filter('date')(newValue, 'yyyy/MM/dd');
-                });
-
+                $scope.dateBirth = new Date(data.birthdate);
 
 
             })
