@@ -13,7 +13,7 @@
  */
 
 angular.module('budGestApp')
-    .controller('PersonsCtrl', function ($scope, $http) {
+    .controller('PersonsCtrl', function ($scope, $http,$route) {
 
         $http.get('person')
             .success(function (data) {
@@ -73,8 +73,6 @@ angular.module('budGestApp')
 
 
 
-        /*****/
-
     });
 
 
@@ -115,6 +113,20 @@ angular.module('budGestApp')
                     alert('Une erreur est survenue lors de la suppression de cette personne : ' + data.message);
                 });
         };
+
+
+        $scope.updatePersonPost = function (person) {
+
+            $http.post('person/', person)
+                .success(function (data) {
+                    alert('Cette personne a été mis à jour avec succès');
+                    $route.reload();
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la mise à jour : ' + data.message);
+                });
+        };
+
 
         $scope.delete = function (budget) {
             $http.delete('budget/' + budget.budgetId)

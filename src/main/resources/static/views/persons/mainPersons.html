@@ -42,7 +42,7 @@
                             <td>{{person.firstName}}</td>
                             <td>{{person.pseudo}}</td>
                             <td><a href="#/persons/{{person.personId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                                <a ng-click="addPersonPost(person)" > <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+                                <a href="#/persons/{{person.personId}}" > <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>&nbsp;&nbsp;
                                 <a ng-click="DeletePerson(person.personId)" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
                             </td>
                         </tr>
@@ -91,7 +91,7 @@
 
                             <div class="form-group">
                                 <label for="phoneNumber">N° de Tél :</label>
-                                <input type="text" class="form-control" id="phoneNumber" ng-model="person.phoneNumber" required >
+                                <input type="numeric" class="form-control" id="phoneNumber" ng-model="person.phoneNumber" required >
                             </div>
                             <div class="form-group">
                                 <label for="birthdate">Date d'anniversaire :</label>

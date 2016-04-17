@@ -105,3 +105,54 @@
 
 
 <button type="button" class="btn btn-danger" ng-click="DeletePerson(detail.personId)" >Supprimer cette personne</button>
+
+
+
+<!-- Test Update Person -->
+
+<div class="col-md-6">
+    <form novalidate role="form" name="myForm">
+        <div class="form-group">
+            <label for="lastName">Nom : </label>
+            <input type="text" class="form-control" id="lastName" ng-model="detail.lastName" required />
+        </div>
+        <div class="form-group">
+            <label for="firstName">Prénom :</label>
+            <input type="text" class="form-control" id="firstName" ng-model="detail.firstName" required />
+        </div>
+        <div class="form-group">
+            <label for="pseudo">Pseudo :</label>
+            <input type="text" class="form-control" id="pseudo" ng-model="detail.pseudo" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" class="form-control" id="password" ng-model="detail.password" required />
+        </div>
+        <div class="form-group">
+            <label for="mail">Mail :</label>
+            <input type="text" class="form-control" id="mail" ng-model="detail.mail" required />
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber">N° de Tél :</label>
+            <input type="numeric" class="form-control" id="phoneNumber" ng-model="detail.phoneNumber" required />
+        </div>
+        <div class="form-group">
+            <label for="birthdate">Date d'anniversaire :</label>
+            <input type="date" class="form-control" id="birthdate" ng-model="detail.birthdate" required />
+
+        </div>
+
+        <div role="alert">
+                                    <span class="error" ng-show="myForm.$error.required">
+                                    Au moins un champ est vide !</span>
+        </div>
+
+
+
+
+        <button type="button" class="btn btn-primary" ng-click="updatePersonPost(detail)" ng-disabled="myForm.$invalid"  >Modifier cette personne</button>
+
+
+    </form>
+</div>
