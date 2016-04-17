@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
     <li><a href="#/">Home</a></li>
     <li><a href="#/persons">Personnes</a></li>
-    <li><a href="#/persons/{{detail.personId}}">Detail</a></li>
+    <li><a href="#/persons/{{detail.personId}}">Détail</a></li>
     <li class="active">modifier</li>
 </ol>
 
@@ -42,13 +42,15 @@
                 </div>
                 <div class="form-group">
                     <label for="birthdate">Date d'anniversaire :</label>
-                    <input type="date" class="form-control" id="birthdate" ng-model="detail.birthdate" required />
+                    <input type="date" class="form-control" id="birthdate" ng-model="mydateOfBirth" required />
 
                 </div>
 
                 <div role="alert">
                                             <span class="error" ng-show="myForm.$error.required">
                                             Au moins un champ est vide !</span>
+                                            <span class="error" ng-show="myForm.input.$error.date">
+         Not a valid date!</span>
                 </div>
 
 
