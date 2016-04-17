@@ -26,6 +26,55 @@ angular.module('budGestApp')
                 $scope.data_success = true;
             });
 
+        $scope.DeletePerson = function (idx) {
+            console.log(idx);
+
+            var idPerson=idx;
+
+            $http.delete('person/' +  idPerson)
+                .success(function (data) {
+                    alert('La personne a bien été supprimer ');
+                    $route.reload();
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la suppression de cette personne : ' + data.message);
+                });
+        };
+
+
+        /*****/
+
+        $scope.addPersonPost = function (person) {
+            var dataPerson = {
+
+
+                personId:person.personId,
+                firstName: person.firstName,
+                lastName: person.lastName,
+                pseudo: person.pseudo,
+                password: person.password,
+                birthdate: person.birthdate,
+                phoneNumber: person.phoneNumber,
+                mail: person.mail,
+                manager: {}
+                };
+
+            $http.post('person/', dataPerson)
+                .success(function (data) {
+                    alert('Cette personne a été ajouter avec succès');
+                    //$scope.reset();
+                    $route.reload();
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de l\'ajout de cette personne : ' + data.message);
+                });
+            };
+
+
+
+
+        /*****/
+
     });
 
 
@@ -50,7 +99,7 @@ angular.module('budGestApp')
             });
 
 
-        $scope.DeleteData = function (idx) {
+        $scope.DeletePerson = function (idx) {
             console.log(idx);
 
             var idPerson=idx;
@@ -58,7 +107,9 @@ angular.module('budGestApp')
             $http.delete('person/' +  idPerson)
                 .success(function (data) {
                     alert('La personne a bien été supprimer ');
-                    $route.reload();
+                    $location.path('#/Persons');
+
+
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de la suppression de cette personne : ' + data.message);
