@@ -1,9 +1,11 @@
 package server.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import server.model.Person;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class Atendee {
@@ -21,6 +23,7 @@ public class Atendee {
         this.phoneNumber = person.getPhoneNumber();
         this.mail = person.getMail();
     }
+
 
 
 
