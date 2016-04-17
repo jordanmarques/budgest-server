@@ -29,45 +29,13 @@ public class PersonControllerTest extends AbstractTestIntegration {
     @Autowired
     private PersonService personService;
 
-//    @Before
-//    public void insertPersons(){
-//        Person person = Person.builder()
-//                .personId(1L)
-//                .birthdate(new Date(116, 4, 9))
-//                .firstName("Stan")
-//                .lastName("Laurel")
-//                .mail("titi@machinbidule.com")
-//                .password("dudule")
-//                .phoneNumber("0632145896")
-//                .pseudo("Laurel").build();
-//
-//        Person person2 = Person.builder()
-//                .personId(2L)
-//                .birthdate(new Date(116, 4, 9))
-//                .firstName("Olivier")
-//                .lastName("Hardy")
-//                .mail("tutu@machinbidule.com")
-//                .password("totor")
-//                .phoneNumber("0632145896")
-//                .pseudo("Hardy").build();
-//
-//        personService.upsertPerson(person);
-//        personService.upsertPerson(person2);
-//    }
-//
-//    @After
-//    public void deletePersons(){
-//        personService.deletePerson(1L);
-//        personService.deletePerson(2L);
-//    }
-
     public static final String DATASET = "datasets/PersonControllerTest.xml";
 
     @Test
     public void should_get_all_persons(){
         RestAssured.when()
                 .get("/person")
-                .then()
+            .then()
                 .log().all()
                 .body("$", Matchers.hasSize(2));
     }
@@ -76,7 +44,7 @@ public class PersonControllerTest extends AbstractTestIntegration {
     public void should_get_person_by_id(){
         RestAssured.when()
                 .get("/person/1")
-                .then()
+            .then()
                 .log().all()
                 .body("firstName", Matchers.is("Stan"));
     }
@@ -110,7 +78,7 @@ public class PersonControllerTest extends AbstractTestIntegration {
     public void should_delete_a_person(){
         RestAssured.when()
                 .delete("/person/1")
-                .then()
+            .then()
                 .log().all()
                 .statusCode(200);
     }
