@@ -13,7 +13,7 @@
  */
 
 angular.module('budGestApp')
-    .controller('PersonsCtrl', function ($scope, $http,$route) {
+    .controller('PersonsCtrl', function ($scope, $http, $route) {
 
         $http.get('person')
             .success(function (data) {
@@ -29,9 +29,9 @@ angular.module('budGestApp')
         $scope.DeletePerson = function (idx) {
             console.log(idx);
 
-            var idPerson=idx;
+            var idPerson = idx;
 
-            $http.delete('person/' +  idPerson)
+            $http.delete('person/' + idPerson)
                 .success(function (data) {
                     alert('La personne a bien été supprimer ');
                     $route.reload();
@@ -41,14 +41,9 @@ angular.module('budGestApp')
                 });
         };
 
-
-
-
         $scope.addPersonPost = function (person) {
             var dataPerson = {
-
-
-                personId:person.personId,
+                personId: person.personId,
                 firstName: person.firstName,
                 lastName: person.lastName,
                 pseudo: person.pseudo,
@@ -57,7 +52,7 @@ angular.module('budGestApp')
                 phoneNumber: person.phoneNumber,
                 mail: person.mail,
                 manager: {}
-                };
+            };
 
             $http.post('person/', dataPerson)
                 .success(function (data) {
@@ -69,11 +64,7 @@ angular.module('budGestApp')
                 .error(function (data) {
                     alert('Une erreur est survenue lors de l\'ajout de cette personne : ' + data.message);
                 });
-            };
-
-
-
-
+        };
     });
 
 
@@ -84,21 +75,6 @@ angular.module('budGestApp')
             .success(function (data) {
                 $scope.persons = data;
             });
-
-
-
-
-
-        /*
-
-
-         */
-
-
-
-
-
-
 
         $http.get('person/' + $routeParams.id)
             .success(function (data) {
@@ -116,7 +92,6 @@ angular.module('budGestApp')
                 });
 
 
-
             })
             .error(function () {
                 alert('Cette person n\'existe pas !');
@@ -127,9 +102,9 @@ angular.module('budGestApp')
         $scope.DeletePerson = function (idx) {
             console.log(idx);
 
-            var idPerson=idx;
+            var idPerson = idx;
 
-            $http.delete('person/' +  idPerson)
+            $http.delete('person/' + idPerson)
                 .success(function (data) {
                     alert('La personne a bien été supprimer ');
                     $location.path('#/Persons');
@@ -183,19 +158,17 @@ angular.module('budGestApp')
         };
 
         $scope.addEventAction = function (choosenEvent) {
-            $http.get('event/'+choosenEvent.eventId)
+            $http.get('event/' + choosenEvent.eventId)
                 .success(function (data) {
                     delete data.atendees;
 
                     person = $scope.detail;
 
-                    angular.forEach(person.events, function(value, key) {
-                        console.log(value.atendees);
+                    angular.forEach(person.events, function (value, key) {
+                        //console.log(value.atendees);
                         delete value.atendees;
                     });
 
-                    //delete person.events.atendees;
-                    //console.log(person);
                     person.events.push(data);
                     $http.post('person/', person)
                         .success(function () {
@@ -207,7 +180,7 @@ angular.module('budGestApp')
                         });
                 })
                 .error(function (data) {
-                    alert('Une erreur est survenue lors de la récupération des évènements : ' + data.message);
+                    alert('Une erreur est survenue lors de la récupération de lévènement : ' + data.message);
                 });
         };
 
