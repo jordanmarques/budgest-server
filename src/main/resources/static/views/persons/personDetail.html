@@ -78,7 +78,6 @@
 </div>
 
 <div ng-show="event_update">
-    {{$scope.event_update}}
     Modification de l'évènement :
 
     <form novalidate role="form" name="updateEventForm">
@@ -97,8 +96,6 @@
         </div>
 
         <button type="button" class="btn btn-default" ng-click="reset()">Annuler</button>
-        <button type="submit" class="btn btn-default" ng-click="updateEventAction(eventUpdate)" ng-disabled="myForm.$invalid">Créer un
-            évènement
-        </button>
+        <button type="submit" class="btn btn-default" ng-click="updateEventAction(eventUpdate)" ng-disabled="myForm.$invalid">Valider</button>
     </form>
 </div>
