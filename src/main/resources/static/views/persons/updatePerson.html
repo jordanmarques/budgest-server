@@ -1,0 +1,66 @@
+<ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li><a href="#/persons">Personnes</a></li>
+    <li><a href="#/persons/{{detail.personId}}">Détail</a></li>
+    <li class="active">modifier</li>
+</ol>
+
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Budget associé à {{ detail.firstName  }} {{ detail.lastName  }}  </h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="col-md-6">
+            <form novalidate role="form" name="myForm">
+
+
+                <div class="form-group">
+                    <label for="lastName">Nom : </label>
+                    <input type="text" class="form-control" id="lastName" ng-model="detail.lastName" required />
+                </div>
+                <div class="form-group">
+                    <label for="firstName">Prénom :</label>
+                    <input type="text" class="form-control" id="firstName" ng-model="detail.firstName" required />
+                </div>
+                <div class="form-group">
+                    <label for="pseudo">Pseudo :</label>
+                    <input type="text" class="form-control" id="pseudo" ng-model="detail.pseudo" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" class="form-control" id="password" ng-model="detail.password" required />
+                </div>
+                <div class="form-group">
+                    <label for="mail">Mail :</label>
+                    <input type="text" class="form-control" id="mail" ng-model="detail.mail" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">N° de Tél :</label>
+                    <input type="numeric" class="form-control" id="phoneNumber" ng-model="detail.phoneNumber" required />
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Date d'anniversaire :</label>
+                    <input type="date" class="form-control" id="birthdate" ng-model="mydateOfBirth" required />
+
+                </div>
+
+                <div role="alert">
+                                            <span class="error" ng-show="myForm.$error.required">
+                                            Au moins un champ est vide !</span>
+                                            <span class="error" ng-show="myForm.input.$error.date">
+         Not a valid date!</span>
+                </div>
+
+
+
+
+                <button type="button" class="btn btn-primary" ng-click="updatePersonPost(detail)" >Modifier cette personne</button>
+
+
+             </form>
+        </div>
+
+    </div>
+</div>

@@ -24,6 +24,11 @@ angular
                 controller: 'MainCtrl',
                 controllerAs: 'main'
             })
+            .when('/persons/add', {
+                templateUrl: 'views/persons/addPerson.html',
+                controller: 'PersonsCtrl',
+                controllerAs: 'persons'
+            })
             .when('/persons', {
                 templateUrl: 'views/persons/mainPersons.html',
                 controller: 'PersonsCtrl',
@@ -31,6 +36,11 @@ angular
             })
             .when('/persons/:id', {
                 templateUrl: 'views/persons/personDetail.html',
+                controller: 'PersonCtrl',
+                controllerAs: 'persons'
+            })
+            .when('/persons/:id/update', {
+                templateUrl: 'views/persons/updatePerson.html',
                 controller: 'PersonCtrl',
                 controllerAs: 'persons'
             })
