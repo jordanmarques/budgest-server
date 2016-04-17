@@ -185,13 +185,17 @@ angular.module('budGestApp')
         $scope.addEventAction = function (choosenEvent) {
             $http.get('event/'+choosenEvent.eventId)
                 .success(function (data) {
-                    console.log(data);
                     delete data.atendees;
-                    console.log(data);
 
                     person = $scope.detail;
-                    delete person.events.atendees;
-                    console.log(person);
+
+                    angular.forEach(person.events, function(value, key) {
+                        console.log(value.atendees);
+                        delete value.atendees;
+                    });
+
+                    //delete person.events.atendees;
+                    //console.log(person);
                     person.events.push(data);
                     $http.post('person/', person)
                         .success(function () {
