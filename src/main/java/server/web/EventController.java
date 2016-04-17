@@ -33,13 +33,13 @@ public class EventController {
 
     @RequestMapping(method = POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Event addBudget(@RequestBody Event event) throws Exception {
+    public Event addEvent(@RequestBody Event event) throws Exception {
         return eventService.upsertEvent(event);
     }
 
     @RequestMapping(path = "/{id}", method = DELETE)
     @ResponseStatus(value = HttpStatus.OK)
-    public void deleteBudget(@PathVariable("id") Long id){
+    public void deleteEvent(@PathVariable("id") Long id){
         eventService.deleteEvent(id);
     }
 

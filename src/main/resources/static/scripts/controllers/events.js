@@ -8,7 +8,7 @@
  * Controller of the budGestApp
  */
 angular.module('budGestApp')
-  .controller('EventsCtrl', function ($scope, $http, person) {
+  .controller('EventsCtrl', function ($scope, $http, person, $route) {
 
       //Ajout de l event
       person.success(function (data) {
@@ -19,7 +19,8 @@ angular.module('budGestApp')
 
           $http.post('event/', event)
               .success(function () {
-                  alert('Une e');
+                  alert('Cet évènement a bien été créer !');
+                  $route.reload();
               })
               .error(function (data) {
                   alert('Une erreur est survenue lors de la récupération de l\'utilisateur: ' + data.message);
