@@ -130,9 +130,47 @@ angular.module('budGestApp')
 
         //EVENT
 
+        //Ajout
+        $scope.addEventShow = function () {
+            $scope.event_add_div = !$scope.event_add_div;
 
+            $http.get('event/')
+                .success(function (data) {
+                    $scope.events = data;
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la récupération des évènements : ' + data.message);
+                });
+        };
+
+        $scope.addEventAction = function (choosenEvent) {
+            $http.get('event/'+choosenEvent.eventId)
+                .success(function (data) {
+                    console.log(data);
+                    delete data.atendees;
+                    console.log(data);
+
+                    person = $scope.detail;
+                    delete person.events.atendees;
+                    console.log(person);
+                    person.events.push(data);
+                    $http.post('person/', person)
+                        .success(function () {
+                            alert('L\'évènement a bien été mis à jours !');
+                            $route.reload();
+                        })
+                        .error(function (data) {
+                            alert('Une erreur est survenue lors de la mise à jours de l\'évènement : ' + data.message);
+                        });
+                })
+                .error(function (data) {
+                    alert('Une erreur est survenue lors de la récupération des évènements : ' + data.message);
+                });
+        };
+
+        //MAJ
         $scope.updateEventShow = function (event) {
-            $scope.event_update = true;
+            $scope.event_update_div = !$scope.event_update_div;
             $scope.eventUpdate = event;
         };
 

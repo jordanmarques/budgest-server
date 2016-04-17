@@ -7,27 +7,29 @@
 
 <div>
 
-<ul class="list-group">
-    <li class="list-group-item active">Détail de la personne : </li>
-    <li class="list-group-item"><strong>Nom : </strong> {{ detail.lastName  }}</li>
-    <li class="list-group-item"><strong>Prénom : </strong> {{ detail.firstName  }}</li>
-    <li class="list-group-item"><strong>Pseudo :</strong>  {{ detail.pseudo  }}</li>
-    <li class="list-group-item"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;  {{ detail.mail  }}</li>
-    <li class="list-group-item"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;  {{ detail.phoneNumber  }}</li>
-    <li class="list-group-item"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span>&nbsp;{{ detail.birthdate | date }}</li>
+    <ul class="list-group">
+        <li class="list-group-item active">Détail de la personne :</li>
+        <li class="list-group-item"><strong>Nom : </strong> {{ detail.lastName }}</li>
+        <li class="list-group-item"><strong>Prénom : </strong> {{ detail.firstName }}</li>
+        <li class="list-group-item"><strong>Pseudo :</strong> {{ detail.pseudo }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp; {{
+            detail.mail }}
+        </li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp; {{
+            detail.phoneNumber }}
+        </li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span>&nbsp;{{
+            detail.birthdate | date }}
+        </li>
 
-</ul>
+    </ul>
 
 
 </div>
-
-
-
-
 
 
 <div class="panel panel-success">
-    <div class="panel-heading">Budget associé à {{ detail.firstName  }} {{ detail.lastName  }}  </div>
+    <div class="panel-heading">Budget associé à {{ detail.firstName }} {{ detail.lastName }}</div>
 
     <table class="table">
         <tr>
@@ -37,47 +39,68 @@
             <th>Action</th>
         </tr>
 
-        <tr  ng-repeat="budget in detail.budgets" >
+        <tr ng-repeat="budget in detail.budgets">
             <th>{{budget.budgetId}}</th>
             <td>{{budget.name}}</td>
             <td>{{budget.globalAmount}}</td>
-            <td><a href="#/budgests/{{budget.budgetId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+            <td><a href="#/budgests/{{budget.budgetId}}"> <span class="glyphicon glyphicon-th-list"
+                                                                aria-hidden="true"></span> </a>&nbsp;&nbsp;
                 <!--<a href=""> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>-->&nbsp;&nbsp;
-                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="delete(budget)" ></span> </a>
+                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true"
+                                  ng-click="delete(budget)"></span> </a>
             </td>
         </tr>
     </table>
 </div>
 
-
+<div ng-show="event_add_div">
+    <form novalidate role="form" name="addEventForm">
+        <div class="form-group">
+            <label for="user">Évènement : </label>
+            <select name="repeatSelect" id="user" ng-model="choosenEvent.eventId" required class="form-control">
+                <option ng-repeat="event in events" value="{{event.eventId}}">{{event.name}}</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="reset()">Annuler</button>
+        <button type="submit" class="btn btn-default" ng-click="addEventAction(choosenEvent)" ng-disabled="myForm.$invalid">
+            Associer un
+            évènement
+        </button>
+    </form>
+</div>
 
 <div class="panel panel-info"">
-    <div class="panel-heading">Évènement associé à {{ detail.firstName  }} {{ detail.lastName  }} </div>
-
-    <table class="table">
-        <tr>
-            <th>#id</th>
-            <th>Nom</th>
-            <th>Montant</th>
-            <th>Action</th>
-        </tr>
-
-        <tr  ng-repeat="event in detail.events" >
-            <th>{{event.eventId}}</th>
-            <td>{{event.name}}</td>
-            <td>{{event.amount}}</td>
-            <td><div ng-if="event.ownerId = detail.personId">
-                <a class="glyphicon glyphicon-th-list" aria-hidden="true"  ng-click="updateEventShow(event)" ></a>&nbsp;&nbsp;
-                <!--<a href="#/events/{{event.budgetId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
-                <a href=""> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>-->&nbsp;&nbsp;
-                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="delete(event)" ></span> </a>
-            </div>
-            </td>
-        </tr>
-    </table>
+<div class="panel-heading">Évènement associé à {{ detail.firstName }} {{ detail.lastName }}
+    <button type="button" ng-click="addEventShow()" class="btn btn-success btn-sm pull-right">Associer un évènement
+    </button>
 </div>
 
-<div ng-show="event_update">
+<table class="table">
+    <tr>
+        <th>#id</th>
+        <th>Nom</th>
+        <th>Montant</th>
+        <th>Action</th>
+    </tr>
+
+    <tr ng-repeat="event in detail.events">
+        <th>{{event.eventId}}</th>
+        <td>{{event.name}}</td>
+        <td>{{event.amount}}</td>
+        <td>
+            <div ng-if="event.ownerId = detail.personId">
+                <a class="glyphicon glyphicon-th-list" aria-hidden="true" ng-click="updateEventShow(event)"></a>&nbsp;&nbsp;
+                <!--<a href="#/events/{{event.budgetId}}"> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </a>&nbsp;&nbsp;
+                <a href=""> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>-->&nbsp;&nbsp;
+                <a href=""> <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="delete(event)"></span>
+                </a>
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+
+<div ng-show="event_update_div">
     Modification de l'évènement :
 
     <form novalidate role="form" name="updateEventForm">
@@ -96,9 +119,11 @@
         </div>
 
         <button type="button" class="btn btn-default" ng-click="reset()">Annuler</button>
-        <button type="submit" class="btn btn-default" ng-click="updateEventAction(eventUpdate)" ng-disabled="myForm.$invalid">Valider</button>
+        <button type="submit" class="btn btn-default" ng-click="updateEventAction(eventUpdate)"
+                ng-disabled="myForm.$invalid">Valider
+        </button>
     </form>
 </div>
 
 
-<button type="button" class="btn btn-danger" ng-click="DeletePerson(detail.personId)" >Supprimer cette personne</button>
+<button type="button" class="btn btn-danger" ng-click="DeletePerson(detail.personId)">Supprimer cette personne</button>
