@@ -11,7 +11,6 @@ import java.util.List;
 public class EventService {
 
     private EventRepository eventRepository;
-
     private PersonService personService;
 
     @Autowired

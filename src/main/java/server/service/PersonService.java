@@ -10,14 +10,26 @@ import java.util.List;
 @Service
 public class PersonService {
 
+    private PersonRepository personRepository;
+    private BudgetService budgetService;
+
     @Autowired
-    PersonRepository personRepository;
+    public PersonService(BudgetService budgetService, PersonRepository personRepository) {
+        this.personRepository = personRepository;
+        this.budgetService = budgetService;
+    }
 
     public Person upsertPerson(Person budget) {
         return personRepository.save(budget);
     }
 
     public void deletePerson(Long id){
+        Person person = getById(id);
+        if(null != person.getBudgets()){
+            person.getBudgets().stream()
+                    .forEach(budget -> budgetService.deleteBudget(budget.getBudgetId()));
+        }
+
         personRepository.delete(id);
     }
 
