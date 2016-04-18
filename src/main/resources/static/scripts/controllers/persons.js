@@ -62,9 +62,7 @@ angular.module('budGestApp')
             $http.post('person/', dataPerson)
                 .success(function (data) {
                     alert('Cette personne a été ajouter avec succès');
-                    //$scope.reset();
-                    //$route.reload();
-                    $location.path('#/Persons');
+                    window.history.back();
                 })
                 .error(function (data) {
                     alert('Une erreur est survenue lors de l\'ajout de cette personne : ' + data.message);
