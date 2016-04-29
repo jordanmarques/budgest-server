@@ -10,4 +10,13 @@
 angular.module('budGestApp')
   .controller('MainCtrl', function ($scope) {
     $scope.registeredMode = false;
+
+    $scope.log = function(person){
+
+    };
+
+    $scope.register = function(person){
+
+    }
+
   });
