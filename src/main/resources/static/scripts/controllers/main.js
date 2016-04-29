@@ -8,12 +8,6 @@
  * Controller of the budGestApp
  */
 angular.module('budGestApp')
-  .controller('MainCtrl', function () {
-    /*
-    A QUOI CA SERT????
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];*/
+  .controller('MainCtrl', function ($scope) {
+    $scope.registeredMode = false;
   });

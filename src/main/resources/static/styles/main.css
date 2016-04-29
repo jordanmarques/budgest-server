@@ -59,6 +59,28 @@ body {
   margin-top: 28px;
 }
 
+.padding-5{
+  padding: 5px;
+}
+
+.icon{
+  width: 40px;
+  height: 40px;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.jumbotron .btn{
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+.margin-bot-5{
+  margin-bottom: 5px;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -80,4 +102,8 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.pointer{
+  cursor:pointer;
 }

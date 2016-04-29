@@ -23,42 +23,34 @@
     <!-- Add your site or application content here -->
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
+
           <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
+            <a class="navbar-brand padding-5" href="#/">
+              <img class="icon" src="images/budget-logo.png">
+            </a>
             <a class="navbar-brand" href="#/">BudGest</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Accueil</a></li>
-              <li><a ng-href="#/persons">Personnes</a></li>
-              <li><a ng-href="#/budgests">Budgets</a></li>
-              <li><a ng-href="#/events">Evènements</a></li>
             </ul>
+            <div class="pull-right" ng-controller="NavbarCtrl">
+
+
+            </div>
           </div>
+
+
+
         </div>
       </div>
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+      <div ng-view=""></div>
     </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span>   ESGI Groupe JEE</p>
-      </div>
-    </div>
-
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -77,21 +69,15 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/persons.js"></script>
-        <script src="scripts/controllers/budgests.js"></script>
-        <script src="scripts/controllers/events.js"></script>
-        <!-- endbuild -->
+        <script src="scripts/controllers/navbar.js"></script>
 
-    <!-- Service -->
-    <script src="scripts/service/person.js"></script>
 
 
     <script>
       $(".nav a").on("click", function(){
         $(".nav").find(".active").removeClass("active");
-        $(this).parent().addClass("active");
+        $(this).parent().addClss("active");
       });
-
     </script>
   </body>
 </html>
