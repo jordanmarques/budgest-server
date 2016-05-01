@@ -8,14 +8,19 @@
 
   <form class="align-left">
     <div class="form-group">
-      <label class="control-label" for="inputPseudo">Utilisateur<span ng-show="registeredMode">*</span></label>
+      <label class="control-label" for="inputPseudo">Utilisateur<span ng-show="registeredMode">*</span>
+          <span class="red" ng-show="pseudoError"> Nom d'utilisateur déjà utilisé</span>
+      </label>
       <input type="text" id="inputPseudo" class="form-control margin-bot-5" ng-model="person.username">
 
       <label class="control-label" for="inputPassword">Mot de Passe<span ng-show="registeredMode">*</span></label>
       <input type="password" id="inputPassword" class="form-control margin-bot-5" ng-model="person.password">
 
+      <div class="alert alert-danger padding-5 col-sm-12" ng-show="loginError"><b>Erreur lors de la connexion:</b> Utilisateur ou Mot de passe incorrect</div>
+      <div class="alert alert-success padding-5 col-sm-12" ng-show="creationSuccess"><b>Compte Créé avec succès</b></div>
+
       <span ng-show="!registeredMode">
-        <a class="pointer" ng-click="registeredMode = true"> Pas encore inscrit ? inscrit toi vite !</a>
+        <a class="pointer" ng-click="registeredMode = true; loginError = false; creationSuccess = false;"> Pas encore inscrit ? inscrit toi vite !</a>
 
         <button class="btn btn-warning pull-right" ng-click="login(person)">
           <i class="glyphicon glyphicon-log-in"></i>
@@ -25,21 +30,24 @@
 
       <span ng-show="registeredMode">
         <label class="control-label" for="inputFirstName">Prénom*</label>
-        <input type="text" id="inputFirstName" class="form-control margin-bot-5">
+        <input type="text" id="inputFirstName" class="form-control margin-bot-5" ng-model="person.firstName">
 
         <label class="control-label" for="inputLastName">Nom*</label>
-        <input type="text" id="inputLastName" class="form-control margin-bot-5">
+        <input type="text" id="inputLastName" class="form-control margin-bot-5" ng-model="person.lastName">
 
-        <label class="control-label" for="inputMail">Adresse e-mail*</label>
-        <input type="email" id="inputMail" class="form-control margin-bot-5">
+        <label class="control-label" for="inputMail">Adresse e-mail*
+          <span class="red" ng-show="mailError"> Adresse mail déjà utilisée</span>
+        </label>
+
+        <input type="email" id="inputMail" class="form-control margin-bot-5" ng-model="person.mail">
 
         <label class="control-label" for="inputLastName">Numéro de téléphone</label>
-        <input type="number" id="inputphoneNumber" class="form-control margin-bot-5">
+        <input type="number" id="inputphoneNumber" class="form-control margin-bot-5" ng-model="person.phoneNumber">
 
         <label class="control-label" for="inputBirthDate">Date de naissance</label>
-        <input type="date" id="inputBirthDate" class="form-control margin-bot-5">
+        <input type="date" id="inputBirthDate" class="form-control margin-bot-5" ng-model="person.birthdate">
 
-        <button class="btn btn-primary pull-right">
+        <button type="submit" class="btn btn-primary pull-right" ng-click="register(person)">
           <i class="glyphicon glyphicon-log-in"></i>
           &nbsp;Inscription
         </button>

@@ -1,12 +1,24 @@
 "use strict";
 
 angular.module('budGestApp')
-    .factory('personService', function ($http) {
+    .factory('PersonService', function ($http) {
 
         var service = {};
 
         service.login = function(id, password){
             return $http.get("/person/login?id=" + id + "&password=" + password);
+        };
+
+        service.create = function(person){
+            return $http.post("/person", person);
+        };
+
+        service.checkIfMailExist = function(mail){
+            return $http.get("/person/exist/mail/" + mail);
+        };
+
+        service.checkIfPseudoExist = function(pseudo){
+            return $http.get("/person/exist/pseudo/" + pseudo);
         };
 
         return service;
