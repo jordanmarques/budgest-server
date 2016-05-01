@@ -42,4 +42,32 @@ public class PersonController {
     public void deletePerson(@PathVariable("id") Long id){
         personService.deletePerson(id);
     }
+
+    @RequestMapping(path = "/exist/pseudo/{pseudo}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Boolean getByPseudo(@PathVariable("pseudo") String pseudo){
+        return personService.findByPseudo(pseudo) != null;
+    }
+
+    @RequestMapping(path = "/exist/mail/{mail:.+}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Boolean getByMail(@PathVariable("mail") String mail){
+        return personService.findByMail(mail) != null;
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Person login(@RequestParam("id") String id,
+                         @RequestParam("password") String password){
+        Person person = personService.login(id, password);
+        if(null == person)
+            throw new IllegalArgumentException("Incorrect username or password");
+        return person;
+    }
+
+
+
+
+
+
 }

@@ -19,8 +19,8 @@ public class PersonService {
         this.budgetService = budgetService;
     }
 
-    public Person upsertPerson(Person budget) {
-        return personRepository.save(budget);
+    public Person upsertPerson(Person person) {
+        return personRepository.save(person);
     }
 
     public void deletePerson(Long id){
@@ -41,4 +41,18 @@ public class PersonService {
         return personRepository.findOne(id);
     }
 
+    public Person login(String pseudo, String password){
+        List<Person> persons = personRepository.login(pseudo, password);
+        return (persons.size() == 0) ? null : persons.get(0);
+    }
+
+    public Person findByPseudo(String pseudo){
+        List<Person> persons = personRepository.findByPseudo(pseudo);
+        return (persons.size() == 0) ? null : persons.get(0);
+    }
+
+    public Person findByMail(String mail){
+        List<Person> persons = personRepository.findByMailAdress(mail);
+        return (persons.size() == 0) ? null : persons.get(0);
+    }
 }

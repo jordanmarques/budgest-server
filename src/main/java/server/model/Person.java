@@ -33,7 +33,7 @@ public class Person {
     @NotEmpty(message = "A person must have a last name")
     private String lastName;
 
-    @Column(name = "pseudo")
+    @Column(name = "pseudo", unique = true)
     @NotEmpty(message = "A person must have a pseudonym")
     private String pseudo;
 
@@ -47,7 +47,7 @@ public class Person {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "mail")
+    @Column(name = "mail", unique = true)
     @NotEmpty(message = "A person must have a mail")
     private String mail;
 

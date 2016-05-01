@@ -7,6 +7,7 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import server.AbstractTest;
 import server.model.Budget;
 import server.model.Person;
@@ -197,5 +198,59 @@ public class PersonServiceTest extends AbstractTest {
         personService.deletePerson(1L);
         assertThat(personService.getAll(), Matchers.hasSize(1));
         assertThat(eventService.getAll(), Matchers.hasSize(2));
+    }
+
+    @Test(expected = Exception.class)
+    public void should_throw_an_exception_when_a_person_with_existing_pseudo_is_inserted(){
+        Person person = Person.builder()
+                .firstName("Toto")
+                .lastName("Tutu")
+                .pseudo("Laurel")
+                .password("Rourou")
+                .birthdate(new Date(116, 4, 9))
+                .phoneNumber("0600000000")
+                .mail("totor@dudule.com")
+                .budgets(new HashSet<Budget>())
+                .build();
+        personService.upsertPerson(person);
+    }
+
+    @Test(expected = Exception.class)
+    public void should_throw_an_exception_when_a_person_with_existing_mail_is_inserted(){
+        Person person = Person.builder()
+                .firstName("Toto")
+                .lastName("Tutu")
+                .pseudo("Laurelp")
+                .password("Rourou")
+                .birthdate(new Date(116, 4, 9))
+                .phoneNumber("0600000000")
+                .mail("titi@machinbidule.com")
+                .budgets(new HashSet<Budget>())
+                .build();
+        personService.upsertPerson(person);
+    }
+
+    @Test
+    public void should_find_by_pseudo(){
+        Person person = personService.findByPseudo("Laurel");
+        assertThat(person.getFirstName(), Matchers.is("Stan"));
+    }
+
+    @Test
+    public void should_find_by_mail(){
+        Person person = personService.findByPseudo("titi@machinbidule.com");
+        assertThat(person.getFirstName(), Matchers.is("Stan"));
+    }
+
+    @Test
+    public void should_login_with_pseudo(){
+        Person person = personService.login("Laurel", "dudule");
+        assertThat(person.getFirstName(), Matchers.is("Stan"));
+    }
+
+    @Test
+    public void should_login_with_mail(){
+        Person person = personService.login("titi@machinbidule.com", "dudule");
+        assertThat(person.getFirstName(), Matchers.is("Stan"));
     }
 }
