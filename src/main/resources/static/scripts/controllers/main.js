@@ -8,18 +8,19 @@
  * Controller of the budGestApp
  */
 angular.module('budGestApp')
-  .controller('MainCtrl', function ($scope, $q, PersonService) {
+  .controller('MainCtrl', function ($scope, $rootScope, $cookies, $q, PersonService) {
 
       $scope.pseudoError = false;
       $scope.registeredMode = false;
       $scope.loginError = false;
       $scope.person = {};
 
-      $("#registerForm").validator();
+      $rootScope.user = ($cookies.getObject('user') || {});
 
     $scope.login = function(person){
         PersonService.login(person.username, person.password).success(function(data){
-            $scope.retriviedPerson = data;
+            $cookies.putObject('user', data);
+            $rootScope.user = data;
         }).error(function(data){
             $scope.loginError = true;
         })
