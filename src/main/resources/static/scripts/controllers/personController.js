@@ -12,10 +12,14 @@ angular.module('budGestApp')
 
       $rootScope.user = ($cookies.getObject('user') || {});
 
-      $scope.person = $rootScope.user;
-
-      if(Utils.isEmpty($scope.person)){
+      if(Utils.isEmpty($rootScope.user)){
           $window.location.href = '#/';
       }
+
+      PersonService.getById($rootScope.user.personId).success(function(data){
+          $scope.person = data;
+      });
+
+
 
   });

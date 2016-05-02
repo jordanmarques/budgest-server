@@ -9,6 +9,10 @@ angular.module('budGestApp')
             return $http.get("/person/login?id=" + id + "&password=" + password);
         };
 
+        service.getById = function(id){
+            return $http.get("/person/" + id);
+        };
+
         service.create = function(person){
             return $http.post("/person", person);
         };
