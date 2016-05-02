@@ -36,12 +36,31 @@
             <li class="active"><a href="#/">Accueil</a></li>
           </ul>
 
-          <div class="pull-right" ng-controller="NavbarCtrl"></div>
+          <div class="pull-right" ng-controller="NavbarCtrl">
+
+            <div class="dropdown login-dropdown" ng-show="user.personId">
+              <button class="btn btn-default dropdown-toggle"
+                      type="button" id="dropdownMenu1"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="true">
+                {{user.firstName}} {{user.lastName}}&nbsp
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                <li><button class="btn btn-danger btn-xs" ng-click="logout()">
+                  <i class="glyphicon glyphicon-log-out"></i>&nbspDéconnexion
+                </button></li>
+              </ul>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div ng-view=""></div>
     </div>
 
@@ -56,15 +75,17 @@
     <script src="js/angular-route/angular-route.js"></script>
     <script src="js/angular-sanitize/angular-sanitize.js"></script>
     <script src="js/angular-touch/angular-touch.js"></script>
-    <script src="js/validator/validator.js"></script>
 
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/navbar.js"></script>
+
+        <script src="scripts/controllers/mainController.js"></script>
+        <script src="scripts/controllers/personController.js"></script>
+        <script src="scripts/controllers/navbarController.js"></script>
+
         <script src="scripts/services/personService.js"></script>
 
 

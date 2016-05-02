@@ -63,6 +63,15 @@ body {
   padding: 5px;
 }
 
+.padding-15{
+  padding: 15px;
+}
+
+.login-dropdown{
+  padding-top: 5px;
+  padding-right: 15px;
+}
+
 .icon{
   width: 40px;
   height: 40px;
@@ -123,3 +132,9 @@ body {
  color: #a84342;
 }
 
+.dropdown-menu {
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
