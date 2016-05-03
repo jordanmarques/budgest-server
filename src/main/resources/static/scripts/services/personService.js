@@ -13,7 +13,7 @@ angular.module('budGestApp')
             return $http.get("/person/" + id);
         };
 
-        service.create = function(person){
+        service.upsert = function(person){
             return $http.post("/person", person);
         };
 

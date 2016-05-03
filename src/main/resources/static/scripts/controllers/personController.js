@@ -11,6 +11,7 @@ angular.module('budGestApp')
   .controller('PersonCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, Utils) {
 
       $rootScope.user = ($cookies.getObject('user') || {});
+      $scope.modalbudget = {};
 
       if(Utils.isEmpty($rootScope.user)){
           $window.location.href = '#/';
@@ -20,6 +21,13 @@ angular.module('budGestApp')
           $scope.person = data;
       });
 
+      $scope.save = function(person){
+          person.budgets.push($scope.modalbudget);
 
+          PersonService.upsert(person).success(function(data){
+              $scope.person = data;
+              $cookies.putObject('user', data);
+          })
+      }
 
   });

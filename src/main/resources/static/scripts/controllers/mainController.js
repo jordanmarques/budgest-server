@@ -47,7 +47,7 @@ angular.module('budGestApp')
             $scope.mailError = data[1].data;
 
             if(!($scope.pseudoError && $scope.mailError)) {
-                PersonService.create(person).success(function (data) {
+                PersonService.upsert(person).success(function (data) {
                     $scope.registeredMode = false;
                     $scope.person.username = data.pseudo;
                     $scope.creationSuccess = true;
