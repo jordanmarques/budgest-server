@@ -33,10 +33,14 @@
         <div class="panel panel-default" ng-show="detailBudget.name">
             <div class="panel-heading">
                 <h3 class="panel-title">Détail
-                    <button class="btn btn-xs btn-default pull-right" ng-hide="editMode" ng-click="editMode = true">
+                    <button class="btn btn-xs btn-default pull-right" ng-hide="editMode" ng-click="edit(detailBudget)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspModifier
                     </button>
-                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="editMode = false">
+                    <button class="btn btn-xs btn-default margin-left-5 pull-right" ng-show="editMode" ng-click="editMode = false">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspAnnuler
+                    </button>
+
+                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="updateBudget(person, editedBudget)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspSauvegarder
                     </button>
                     <button class="btn btn-xs btn-danger pull-right flat-right" ng-show="editMode" ng-click="deleteBudget(person, detailBudget)">
@@ -45,10 +49,16 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <h3>{{detailBudget.name}}</h3>
-                <div class="pull-right">
-                    <div class="circle-multiline ">
-                        <span style="font-size: 2.5em">{{detailBudget.globalAmount}}&nbsp€</span></br>
+                <div class="col-sm-6">
+                    <h3 ng-hide="editMode">{{detailBudget.name}}</h3>
+                    <input ng-model="editedBudget.name" ng-show="editMode">
+                </div>
+                <div class="col-sm-6">
+                    <div class="pull-right">
+                        <div class="circle-multiline ">
+                            <span style="font-size: 2.5em" ng-hide="editMode">{{detailBudget.globalAmount}}&nbsp€</span>
+                            <input ng-model="editedBudget.globalAmount" ng-show="editMode">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -32,6 +32,9 @@ angular.module('budGestApp')
       };
 
       $scope.deleteBudget = function(person, budget){
+
+          if(!confirm("Êtes vous sûre de vouloir supprimer ce budget ?")) return;
+
           person.budgets.splice(person.budgets.indexOf(budget), 1);
 
           BudgetService.delete(budget).success(function(){
@@ -40,9 +43,28 @@ angular.module('budGestApp')
               delete $scope.detailBudget;
           })
       };
+
+      $scope.updateBudget = function(person, budget){
+          delete person.budgets;
+          budget.manager = person;
+          
+          BudgetService.upsert(budget).success(function(){
+              PersonService.getById(person.personId).success(function(data){
+                  $scope.detailBudget = angular.copy(budget);
+                  $scope.person = data;
+                  $scope.editMode = false;
+              });
+          })
+      };
       
       $scope.sendToDetailView = function(budget){
-          $scope.detailBudget = budget;
+          $scope.detailBudget = angular.copy(budget);
+      };
+      
+      $scope.edit = function(budget){
+          delete $scope.editedBudget;
+          $scope.editMode = true;
+          $scope.editedBudget = angular.copy(budget);
       };
 
   });

@@ -89,6 +89,9 @@ body {
 .margin-bot-5{
   margin-bottom: 5px;
 }
+.margin-left-5{
+  margin-left: 5px;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -158,4 +161,7 @@ body {
 .flat-right{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+.circle-multiline > input {
+  color : black;
 }
