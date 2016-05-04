@@ -1,43 +1,45 @@
-<div class="col-sm-4">
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-4">
 
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">Budgets
-                <button class="btn btn-xs btn-warning pull-right" data-toggle="modal" data-target="#budgetCreationModal">
-                    <i class="glyphicon glyphicon-plus"></i>&nbspNouveau Budget
-                </button>
-            </h3>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Budgets
+                    <button class="btn btn-xs btn-warning pull-right" data-toggle="modal" data-target="#budgetCreationModal">
+                        <i class="glyphicon glyphicon-plus"></i>&nbspNouveau Budget
+                    </button>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Montant</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="pointer" ng-repeat="budget in person.budgets" ng-click="sendToDetailView(budget)">
+                        <td>{{budget.name}}</td>
+                        <td>{{budget.globalAmount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="panel-body">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Montant</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="pointer" ng-repeat="budget in person.budgets" ng-click="sendToDetailView(budget)">
-                    <td>{{budget.name}}</td>
-                    <td>{{budget.globalAmount}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+
     </div>
 
-</div>
-
-<div class="col-sm-8">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Détail</h3>
-        </div>
-        <div class="panel-body">
-            <h3>{{detailBudget.name}}</h3>
-            <div class="pull-right">
-                <div class="circle-multiline ">
-                    <span style="font-size: 2.5em">{{detailBudget.globalAmount}}&nbsp€</span></br>
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Détail</h3>
+            </div>
+            <div class="panel-body">
+                <h3>{{detailBudget.name}}</h3>
+                <div class="pull-right">
+                    <div class="circle-multiline ">
+                        <span style="font-size: 2.5em">{{detailBudget.globalAmount}}&nbsp€</span></br>
+                    </div>
                 </div>
             </div>
         </div>
