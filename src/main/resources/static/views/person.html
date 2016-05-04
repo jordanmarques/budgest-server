@@ -17,7 +17,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="budget in person.budgets">
+                <tr class="pointer" ng-repeat="budget in person.budgets" ng-click="sendToDetailView(budget)">
                     <td>{{budget.name}}</td>
                     <td>{{budget.globalAmount}}</td>
                 </tr>
@@ -28,7 +28,21 @@
 
 </div>
 
-<div class="col-sm-8"></div>
+<div class="col-sm-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Détail</h3>
+        </div>
+        <div class="panel-body">
+            <h3>{{detailBudget.name}}</h3>
+            <div class="pull-right">
+                <div class="circle-multiline ">
+                    <span style="font-size: 2.5em">{{detailBudget.globalAmount}}&nbsp€</span></br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="budgetCreationModal" tabindex="-1" role="dialog" aria-labelledby="budgetCreationModal">
     <div class="modal-dialog" role="document">
@@ -52,7 +66,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning btn-sm"
                         data-dismiss="modal"
-                        ng-click="save(person)"
+                        ng-click="saveBudget(person)"
                         ng-disabled="budgetCreationForm.$invalid">
                     <i class="glyphicon glyphicon-plus"></i>&nbspCréer le budget
                 </button>

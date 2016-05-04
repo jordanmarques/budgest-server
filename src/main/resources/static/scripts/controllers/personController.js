@@ -21,13 +21,28 @@ angular.module('budGestApp')
           $scope.person = data;
       });
 
-      $scope.save = function(person){
+      $scope.saveBudget = function(person){
           person.budgets.push($scope.modalbudget);
 
           PersonService.upsert(person).success(function(data){
               $scope.person = data;
               $cookies.putObject('user', data);
+              delete $scope.modalbudget;
           })
+      };
+
+      $scope.deleteBudget = function(person, budget){
+          person.budgets.splice(person.indexOf(budget), 1);
+
+          PersonService.upsert(person).success(function(data){
+              $scope.person = data;
+              $cookies.putObject('user', data);
+              delete $scope.modalbudget;
+          })
+      }
+      
+      $scope.sendToDetailView = function(budget){
+          $scope.detailBudget = budget;
       }
 
   });
