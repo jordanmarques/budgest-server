@@ -149,3 +149,13 @@ body {
   background: #f0ad4e;
   color: white;
 }
+
+.flat-left{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.flat-right{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

@@ -30,9 +30,19 @@
     </div>
 
     <div class="col-sm-8">
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-show="detailBudget.name">
             <div class="panel-heading">
-                <h3 class="panel-title">Détail</h3>
+                <h3 class="panel-title">Détail
+                    <button class="btn btn-xs btn-default pull-right" ng-hide="editMode" ng-click="editMode = true">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspModifier
+                    </button>
+                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="editMode = false">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspSauvegarder
+                    </button>
+                    <button class="btn btn-xs btn-danger pull-right flat-right" ng-show="editMode" ng-click="deleteBudget(person, detailBudget)">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspSupprimer
+                    </button>
+                </h3>
             </div>
             <div class="panel-body">
                 <h3>{{detailBudget.name}}</h3>

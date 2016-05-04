@@ -8,7 +8,7 @@
  * Controller of the budGestApp
  */
 angular.module('budGestApp')
-  .controller('PersonCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, Utils) {
+  .controller('PersonCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, BudgetService, Utils) {
 
       $rootScope.user = ($cookies.getObject('user') || {});
       $scope.modalbudget = {};
@@ -32,17 +32,17 @@ angular.module('budGestApp')
       };
 
       $scope.deleteBudget = function(person, budget){
-          person.budgets.splice(person.indexOf(budget), 1);
+          person.budgets.splice(person.budgets.indexOf(budget), 1);
 
-          PersonService.upsert(person).success(function(data){
-              $scope.person = data;
-              $cookies.putObject('user', data);
-              delete $scope.modalbudget;
+          BudgetService.delete(budget).success(function(){
+              $scope.person = person;
+              $cookies.putObject('user', person);
+              delete $scope.detailBudget;
           })
-      }
+      };
       
       $scope.sendToDetailView = function(budget){
           $scope.detailBudget = budget;
-      }
+      };
 
   });
