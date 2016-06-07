@@ -1,8 +1,26 @@
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
+}
+
+.grey{
+  background-color: #f5f5f5;
+}
+
+.footer-custom{
+  margin-top: -10px;
+  margin-bottom: 5px;
 }
 
 body {
@@ -164,4 +182,8 @@ body {
 }
 .circle-multiline > input {
   color : black;
+}
+
+.margin-bottom-35{
+  margin-bottom: 35px;
 }
