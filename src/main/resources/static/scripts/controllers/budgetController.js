@@ -8,7 +8,7 @@
  * Controller of the budGestApp
  */
 angular.module('budGestApp')
-  .controller('PersonCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, BudgetService, Utils) {
+  .controller('BudgetCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, BudgetService, Utils) {
 
       $rootScope.user = ($cookies.getObject('user') || {});
       $scope.modalbudget = {};

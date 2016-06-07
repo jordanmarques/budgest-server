@@ -22,9 +22,14 @@ angular
             .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
-            }).when('/user', {
-                templateUrl: 'views/person.html',
-                controller: 'PersonCtrl'
+            }).when('/budget', {
+                templateUrl: 'views/budget.html',
+                controller: 'BudgetCtrl',
+                activetab: 'budget'
+            }).when('/event', {
+                templateUrl: 'views/event.html',
+                controller: 'EventCtrl',
+                activetab: 'event'
             })
             .otherwise({
                 redirectTo: '/'

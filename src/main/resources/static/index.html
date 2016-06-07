@@ -33,7 +33,8 @@
 
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Accueil</a></li>
+            <li ng-class="{'active' : $route.current.activetab == 'budget'}"><a href="#/budget">Budget</a></li>
+            <li ng-class="{'active' : $route.current.activetab == 'event'}"><a href="#/event">Événement</a></li>
           </ul>
 
           <div class="pull-right" ng-controller="NavbarCtrl">
@@ -83,19 +84,12 @@
         <script src="scripts/app.js"></script>
 
         <script src="scripts/controllers/mainController.js"></script>
-        <script src="scripts/controllers/personController.js"></script>
+        <script src="scripts/controllers/budgetController.js"></script>
+        <script src="scripts/controllers/eventController.js"></script>
         <script src="scripts/controllers/navbarController.js"></script>
 
         <script src="scripts/services/personService.js"></script>
         <script src="scripts/services/budgetService.js"></script>
-
-
-
-    <script>
-      $(".nav a").on("click", function(){
-        $(".nav").find(".active").removeClass("active");
-        $(this).parent().addClss("active");
-      });
-    </script>
+        <script src="scripts/services/eventService.js"></script>
   </body>
 </html>

@@ -1,0 +1,116 @@
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-4">
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Événements
+                    <button class="btn btn-xs btn-warning pull-right" data-toggle="modal" data-target="#eventCreationModal">
+                        <i class="glyphicon glyphicon-plus"></i>&nbspNouvel Événement
+                    </button>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Montant</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="pointer" ng-repeat="event in person.events" ng-click="sendToDetailView(event)">
+                        <td>{{event.name}}</td>
+                        <td>{{event.amount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-8">
+        <div class="panel panel-default" ng-show="detailEvent.name">
+            <div class="panel-heading">
+                <h3 class="panel-title">Détail
+                    <button class="btn btn-xs btn-default pull-right" ng-show="!(editMode) && detailEvent.ownerId == person.personId " ng-click="edit(detailEvent)">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspModifier
+                    </button>
+                    <button class="btn btn-xs btn-default margin-left-5 pull-right" ng-show="editMode" ng-click="editMode = false">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspAnnuler
+                    </button>
+
+                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="updateEvent(person, editedBudget)">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspSauvegarder
+                    </button>
+                    <button class="btn btn-xs btn-danger pull-right flat-right" ng-show="editMode" ng-click="deleteEvent(person, detailEvent)">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspSupprimer
+                    </button>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <div>
+                        <h3 ng-hide="editMode">{{detailEvent.name}}</h3>
+                        <input ng-model="editedBudget.name" ng-show="editMode">
+                    </div>
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="detailPerson in detailEvent.atendees">
+                                <td>{{detailPerson.lastName}}</td>
+                                <td>{{detailPerson.firstName}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pull-right">
+                        <div class="circle-multiline ">
+                            <span style="font-size: 2.5em" ng-hide="editMode">{{detailEvent.amount}}&nbsp€</span>
+                            <input ng-model="editedBudget.amount" ng-show="editMode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="eventCreationModal" tabindex="-1" role="dialog" aria-labelledby="eventCreationModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Création d'evenement</h4>
+            </div>
+            <div class="modal-body">
+                <form name="eventCreationForm"novalidate>
+                    <div class="form-group">
+                        <label class="control-label" for="inputBudgetName">Nom*</label>
+                        <input type="text" id="inputBudgetName" class="form-control margin-bot-5" ng-model="modalevent.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="inputBudgetAmount">Montant*</label>
+                        <input type="number" id="inputBudgetAmount" class="form-control margin-bot-5" ng-model="modalevent.amount" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning btn-sm"
+                        data-dismiss="modal"
+                        ng-click="saveEvent(person)"
+                        ng-disabled="eventCreationForm.$invalid">
+                    <i class="glyphicon glyphicon-plus"></i>&nbspCréer l'événement
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

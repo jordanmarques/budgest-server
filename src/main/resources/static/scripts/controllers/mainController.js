@@ -18,7 +18,7 @@ angular.module('budGestApp')
       $rootScope.user = ($cookies.getObject('user') || {});
 
       if(!Utils.isEmpty($rootScope.user)){
-          $window.location.href = '#/user';
+          $window.location.href = '#/budget';
       }
 
     $scope.login = function(person){
@@ -26,7 +26,7 @@ angular.module('budGestApp')
 
             $cookies.putObject('user', data);
             $rootScope.user = data;
-            $window.location.href = '#/user';
+            $window.location.href = '#/budget';
 
         }).error(function(data){
             $scope.loginError = true;
