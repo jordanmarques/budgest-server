@@ -35,7 +35,11 @@ angular.module('budGestApp')
 
           if(!confirm("Êtes vous sûre de vouloir supprimer ce budget ?")) return;
 
-          person.budgets.splice(person.budgets.indexOf(budget), 1);
+          person.budgets.forEach(function(b){
+              if(b.budgetId == budget.budgetId){
+                  person.budgets.splice(person.budgets.indexOf(b), 1);
+              }
+          });
 
           BudgetService.delete(budget).success(function(){
               $scope.person = person;

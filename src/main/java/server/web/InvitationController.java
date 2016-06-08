@@ -37,7 +37,11 @@ public class InvitationController {
 
     @RequestMapping(method = POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Invitation addBudget(@RequestBody Invitation invitation) throws Exception {
+    public Invitation checkIfInvitExist(@RequestBody Invitation invitation) throws Exception {
+        Invitation invit = invitationRepository.findByEventIdAndPersonId(invitation.getPersonId(), invitation.getEventId());
+
+        if(invit != null) return null;
+
         return invitationRepository.save(invitation);
     }
 

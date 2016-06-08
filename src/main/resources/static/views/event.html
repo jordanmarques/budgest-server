@@ -15,12 +15,14 @@
                     <tr>
                         <th>Nom</th>
                         <th>Montant</th>
+                        <th>Nombre de Participant(s)</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="pointer" ng-repeat="event in person.events" ng-click="sendToDetailView(event)">
+                    <tr class="pointer" ng-repeat="event in person.events | orderBy:'name'" ng-click="sendToDetailView(event)">
                         <td>{{event.name}}</td>
                         <td>{{event.amount}}</td>
+                        <td>{{event.atendees.length}}</td>
                     </tr>
                     </tbody>
                 </table>

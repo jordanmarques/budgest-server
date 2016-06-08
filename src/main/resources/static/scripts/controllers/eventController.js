@@ -50,8 +50,13 @@ angular.module('budGestApp')
       $scope.deleteEvent = function(person, event){
 
           if(!confirm("Êtes vous sûre de vouloir supprimer cet événement ?")) return;
-
-          person.events.splice(person.events.indexOf(event), 1);
+          
+          person.events.forEach(function(e){
+             if(e.eventId == event.eventId){
+                 person.events.splice(person.events.indexOf(e), 1);
+             } 
+          });
+          
 
           EventService.delete(event).success(function(){
               $scope.person = person;
