@@ -54,21 +54,29 @@
                         <h3 ng-hide="editMode">{{detailEvent.name}}</h3>
                         <input ng-model="editedBudget.name" ng-show="editMode">
                     </div>
-                    <div>
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="detailPerson in detailEvent.atendees">
-                                <td>{{detailPerson.lastName}}</td>
-                                <td>{{detailPerson.firstName}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="detailPerson in detailEvent.atendees">
+                                    <td>{{detailPerson.lastName}}</td>
+                                    <td>{{detailPerson.firstName}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-2" ng-show="detailEvent.ownerId == person.personId">
+                            <button class="btn btn-xs btn-warning" ng-click="triggerModal()">
+                                <i class="glyphicon glyphicon-apple"></i>&nbsp Inviter
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -110,6 +118,41 @@
                         ng-disabled="eventCreationForm.$invalid">
                     <i class="glyphicon glyphicon-plus"></i>&nbspCréer l'événement
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="invitModal" tabindex="-1" role="dialog" aria-labelledby="invitModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Invitation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" ng-show="invitLoading">
+                    <span class="col-sm-4 col-sm-offset-4">
+                        <img src="/images/hourglass.svg" alt="loader">
+                    </span>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in persons">
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.firstName}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+
             </div>
         </div>
     </div>

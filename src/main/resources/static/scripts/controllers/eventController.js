@@ -60,4 +60,14 @@ angular.module('budGestApp')
           $scope.editedBudget = angular.copy(event);
       };
 
+
+      $scope.triggerModal = function(){
+          $('#invitModal').modal('show');
+          $scope.invitLoading = true;
+          PersonService.getAll().success(function(data){
+              $scope.persons = data;
+              delete $scope.invitLoading;
+          })
+      };
+
   });
