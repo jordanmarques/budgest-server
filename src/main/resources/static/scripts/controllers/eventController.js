@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('budGestApp')
-  .controller('EventCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, EventService, Utils) {
+  .controller('EventCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, EventService, Utils, InvitationService) {
 
       $rootScope.user = ($cookies.getObject('user') || {});
       $scope.modalevent = {};
+      $scope.eventInvitations = [];
 
       if(Utils.isEmpty($rootScope.user)){
           $window.location.href = '#/';
@@ -12,7 +13,22 @@ angular.module('budGestApp')
 
       PersonService.getById($rootScope.user.personId).success(function(data){
           $scope.person = data;
+          getInvitations();
       });
+
+
+      function getInvitations(){
+          InvitationService.findByPersonId($scope.person.personId).success(function(data){
+              var invitations = data;
+              invitations.forEach(function(invit){
+                  EventService.getById(invit.eventId).success(function(data){
+                      data.invitId = invit.id;
+                      $scope.eventInvitations.push(data);
+                  })
+              })
+
+          });
+      }
 
       $scope.saveEvent = function(person){
           $scope.modalevent.ownerId = person.personId;
@@ -24,6 +40,7 @@ angular.module('budGestApp')
               delete $scope.modalevent;
           })
       };
+
 
       $scope.deleteEvent = function(person, event){
 
@@ -60,13 +77,28 @@ angular.module('budGestApp')
           $scope.editedBudget = angular.copy(event);
       };
 
-
       $scope.triggerModal = function(){
           $('#invitModal').modal('show');
           $scope.invitLoading = true;
           PersonService.getAll().success(function(data){
               $scope.persons = data;
               delete $scope.invitLoading;
+          })
+      };
+
+      $scope.acceptInvitation = function(index, invitation){
+          $scope.person.events.push(invitation);
+          PersonService.upsert($scope.person).success(function(data){
+              $scope.person = data;
+              $cookies.putObject('user', data);
+              $scope.declineInvitation(index, invitation);
+          })
+
+      };
+
+      $scope.declineInvitation = function(index, invitation){
+          InvitationService.delete(invitation.invitId).success(function (data) {
+              $scope.eventInvitations.splice(index, 1);
           })
       };
 
