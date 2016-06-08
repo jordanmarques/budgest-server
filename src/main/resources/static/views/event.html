@@ -89,20 +89,14 @@
 
                     <div class="row">
                         <div class="col-sm-10">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="detailPerson in detailEvent.atendees">
-                                    <td>{{detailPerson.lastName}}</td>
-                                    <td>{{detailPerson.firstName}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="panel panel-default">
+                                <!-- Default panel contents -->
+                                <div class="panel-heading">Participants</div>
+                                <!-- List group -->
+                                <ul class="list-group" ng-repeat="detailPerson in detailEvent.atendees">
+                                    <li class="list-group-item">{{detailPerson.lastName}} {{detailPerson.firstName}}</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-sm-2" ng-show="detailEvent.ownerId == person.personId">
                             <button class="btn btn-xs btn-warning" ng-click="triggerModal()">
