@@ -60,6 +60,9 @@
         <div class="panel panel-default" ng-show="detailEvent.name">
             <div class="panel-heading">
                 <h3 class="panel-title">Détail
+                    <button class="btn btn-xs btn-default pull-right" ng-hide="detailEvent.ownerId == person.personId " ng-click="leave(detailEvent)">
+                        <i class="glyphicon glyphicon-edit"></i>&nbspQuiter l'événement
+                    </button>
                     <button class="btn btn-xs btn-default pull-right" ng-show="!(editMode) && detailEvent.ownerId == person.personId " ng-click="edit(detailEvent)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspModifier
                     </button>

@@ -36,9 +36,13 @@ angular.module('budGestApp')
           person.events.push($scope.modalevent);
 
           PersonService.upsert(person).success(function(data){
-              $scope.person = data;
-              $cookies.putObject('user', data);
-              delete $scope.modalevent;
+              PersonService.getById(data.personId).success(function(data2){
+                  $scope.person = data2;
+                  $cookies.putObject('user', data);
+                  delete $scope.modalevent;
+              });
+
+              
           })
       };
 
@@ -62,8 +66,13 @@ angular.module('budGestApp')
           EventService.upsert(event).success(function(){
               PersonService.getById(person.personId).success(function(data){
                   $scope.detailEvent = angular.copy(event);
-                  $scope.person = data;
                   $scope.editMode = false;
+                  PersonService.getById(data.personId).success(function(data2){
+                      $scope.person = data2;
+                      $cookies.putObject('user', data);
+                      delete $scope.modalevent;
+                  });
+
               });
           })
       };
@@ -90,9 +99,15 @@ angular.module('budGestApp')
       $scope.acceptInvitation = function(index, invitation){
           $scope.person.events.push(invitation);
           PersonService.upsert($scope.person).success(function(data){
-              $scope.person = data;
-              $cookies.putObject('user', data);
-              $scope.declineInvitation(index, invitation);
+              PersonService.getById(data.personId).success(function(data2){
+                  $scope.person = data2;
+                  $cookies.putObject('user', data);
+                  delete $scope.modalevent;
+                  $scope.declineInvitation(index, invitation);
+              });
+
+              
+              
           })
 
       };
@@ -114,6 +129,21 @@ angular.module('budGestApp')
               InvitationService.save(invit)
           });
           $('#invitModal').modal('hide');
+      };
+      
+      $scope.leave = function(event){
+          $scope.person.events.forEach(function(e){
+              if(event.eventId == e.eventId){
+                  $scope.person.events.splice($scope.person.events.indexOf(e),1);
+              }
+          });
+          PersonService.upsert($scope.person).success(function(data){
+              PersonService.getById(data.personId).success(function(data2){
+                  $scope.person = data2;
+                  $cookies.putObject('user', data);
+                  delete $scope.detailEvent;
+              });
+          })
       }
 
   });
