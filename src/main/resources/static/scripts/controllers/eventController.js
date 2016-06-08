@@ -6,6 +6,7 @@ angular.module('budGestApp')
       $rootScope.user = ($cookies.getObject('user') || {});
       $scope.modalevent = {};
       $scope.eventInvitations = [];
+      $scope.invitList = [];
 
       if(Utils.isEmpty($rootScope.user)){
           $window.location.href = '#/';
@@ -101,5 +102,18 @@ angular.module('budGestApp')
               $scope.eventInvitations.splice(index, 1);
           })
       };
+
+      $scope.addToInvitList = function(personId, eventId){
+          var invit = {personId:personId, eventId:eventId};
+          $scope.invitList.push(invit);
+          
+      };
+      
+      $scope.invitPersons = function(){
+          $scope.invitList.forEach(function(invit){
+              InvitationService.save(invit)
+          });
+          $('#invitModal').modal('hide');
+      }
 
   });
