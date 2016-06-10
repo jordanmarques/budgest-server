@@ -125,7 +125,19 @@ angular.module('budGestApp')
 
       $scope.addToInvitList = function(personId, eventId){
           var invit = {personId:personId, eventId:eventId};
-          $scope.invitList.push(invit);
+          var index = -1;
+
+          for(var i=0; i<$scope.invitList.length; i++){
+              if($scope.invitList[i].eventId == eventId && $scope.invitList[i].personId == personId){
+                  index = i;
+              }
+          }
+
+          if(index == -1){
+              $scope.invitList.push(invit);
+          }else{
+              $scope.invitList.splice(index, 1)
+          }
           
       };
       
@@ -138,6 +150,7 @@ angular.module('budGestApp')
       
       $scope.leave = function(event){
           $scope.person.events.forEach(function(e){
+              if(!confirm("Êtes vous sûr de vouloir quitter cet événement ?")) return;
               if(event.eventId == e.eventId){
                   $scope.person.events.splice($scope.person.events.indexOf(e),1);
               }

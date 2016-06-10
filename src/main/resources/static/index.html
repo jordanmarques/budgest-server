@@ -40,14 +40,15 @@
           <div class="pull-right" ng-controller="NavbarCtrl">
 
             <div class="dropdown login-dropdown" ng-show="user.personId">
-              <button class="btn btn-default dropdown-toggle"
+              <span class="text-muted dropdown-toggle pointer"
                       type="button" id="dropdownMenu1"
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="true">
                 {{user.firstName}} {{user.lastName}}&nbsp
                 <span class="caret"></span>
-              </button>
+              </span>
+
               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                 <li>
                     <button class="btn btn-danger btn-xs" ng-click="logout()">

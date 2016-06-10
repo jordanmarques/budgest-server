@@ -91,17 +91,17 @@
                         <div class="col-sm-10">
                             <div class="panel panel-default">
                                 <!-- Default panel contents -->
-                                <div class="panel-heading">Participants</div>
+                                <div class="panel-heading">
+                                    <span>Participants</span>
+                                    <button class="btn btn-xs btn-default pull-right" ng-click="triggerModal()">
+                                        <i class="glyphicon glyphicon-plus"></i>&nbsp Inviter
+                                    </button>
+                                </div>
                                 <!-- List group -->
                                 <ul class="list-group" ng-repeat="detailPerson in detailEvent.atendees">
                                     <li class="list-group-item">{{detailPerson.lastName}} {{detailPerson.firstName}}</li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col-sm-2" ng-show="detailEvent.ownerId == person.personId">
-                            <button class="btn btn-xs btn-warning" ng-click="triggerModal()">
-                                <i class="glyphicon glyphicon-apple"></i>&nbsp Inviter
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success pull-right" ng-click="invitPersons()">Inviter</button>
+                <button class="btn btn-success pull-right" ng-click="invitPersons()" ng-valid="invitList.length != 0">Inviter</button>
             </div>
         </div>
     </div>
