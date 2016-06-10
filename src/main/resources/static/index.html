@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="budGestApp">
+  <body ng-app="budGestApp" ng-controller="NavbarCtrl">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -37,7 +37,7 @@
             <li ng-class="{'active' : $route.current.activetab == 'event'}"><a href="#/event">Événement</a></li>
           </ul>
 
-          <div class="pull-right" ng-controller="NavbarCtrl">
+          <div class="pull-right">
 
             <div class="dropdown login-dropdown" ng-show="user.personId">
               <span class="text-muted dropdown-toggle pointer"
