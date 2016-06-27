@@ -10,4 +10,8 @@ angular.module('budGestApp')
       $window.location.href = '#/';
     };
 
+      $scope.myAccount = function(){
+          $window.location.href = '#/person';
+      };
+
   });

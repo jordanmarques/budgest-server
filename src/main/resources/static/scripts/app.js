@@ -30,8 +30,11 @@ angular
                 templateUrl: 'views/event.html',
                 controller: 'EventCtrl',
                 activetab: 'event'
-            })
-            .otherwise({
+            }).when('/person', {
+                templateUrl: 'views/person.html',
+                controller: 'PersonCtrl',
+                activetab: 'person'
+            }).otherwise({
                 redirectTo: '/'
             });
     }).factory('Utils', function() {

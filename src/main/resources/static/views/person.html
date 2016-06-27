@@ -1,0 +1,45 @@
+
+
+<div class="alert alert-success alert-dismissible" role="alert" ng-show="passwordSuccessAlert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Mot de passe changer avec succès
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <form name="mainForm" class="align-left" novalidate>
+
+            <div class="form-group">
+                <label class="control-label" for="firstName">Prénom</label>
+                <input type="text" id="firstName" class="form-control margin-bot-5" ng-model="person.firstName" disabled>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="lastName">Nom</label>
+                <input type="text" id="lastName" class="form-control margin-bot-5" ng-model="person.lastName" disabled>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="pseudo">Pseudo</label>
+                <input type="text" id="pseudo" class="form-control margin-bot-5" ng-model="person.pseudo" disabled>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="mail">E-Mail</label>
+                <input type="text" id="mail" class="form-control margin-bot-5" ng-model="person.mail" disabled>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" >Changement de mot de passe</label>
+                <input type="password" class="form-control margin-bot-5" ng-model="newPassword" id="password">
+                <input type="password" class="form-control margin-bot-5" ng-model="confirmPassword" id="passwordConfirm" ng-class="{'input-error' : confirmPassword !== newPassword}">
+            </div>
+
+            <button type="submit" class="btn btn-primary pull-right"
+                    ng-click="changePassword()"
+                    ng-disabled="newPassword !== confirmPassword || (Utils.isEmpty($scope.newPassword) && Utils.isEmpty($scope.confirmPassword))">
+                &nbsp;Changer de mot de passe
+            </button>
+        </form>
+    </div>
+</div>

@@ -32,6 +32,7 @@ angular.module('budGestApp')
             $scope.loginError = true;
         })
     };
+      
 
     $scope.register = function(person){
         $scope.pseudoError = false;

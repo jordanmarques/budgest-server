@@ -51,9 +51,12 @@
 
               <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                 <li>
-                    <button class="btn btn-danger btn-xs" ng-click="logout()">
-                      <i class="glyphicon glyphicon-log-out"></i>&nbspDéconnexion
-                    </button>
+                  <button class="btn btn-default btn-xs flat-bottom" ng-click="myAccount()">
+                    <i class="glyphicon glyphicon-cog"></i>&nbspMon Compte
+                  </button>
+                  <button class="btn btn-danger btn-xs flat-top" ng-click="logout()">
+                    <i class="glyphicon glyphicon-log-out"></i>&nbspDéconnexion
+                  </button>
                 </li>
               </ul>
             </div>
@@ -99,6 +102,7 @@
         <script src="scripts/controllers/budgetController.js"></script>
         <script src="scripts/controllers/eventController.js"></script>
         <script src="scripts/controllers/navbarController.js"></script>
+        <script src="scripts/controllers/personController.js"></script>
 
         <script src="scripts/services/personService.js"></script>
         <script src="scripts/services/budgetService.js"></script>
