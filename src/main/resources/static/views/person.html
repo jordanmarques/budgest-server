@@ -36,8 +36,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary pull-right"
+                    ng-hide="newPassword == undefined || newPassword==''"
                     ng-click="changePassword()"
-                    ng-disabled="newPassword !== confirmPassword || (Utils.isEmpty($scope.newPassword) && Utils.isEmpty($scope.confirmPassword))">
+                    ng-disabled="newPassword !== confirmPassword">
                 &nbsp;Changer de mot de passe
             </button>
         </form>
