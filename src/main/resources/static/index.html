@@ -20,6 +20,52 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+
+
+
+
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand padding-5" href="#/">
+            <img class="icon" src="images/budget-logo.png">
+          </a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">BudGest</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="{'active' : $route.current.activetab == 'budget'}"><a href="#/budget">Budget</a></li>
+            <li ng-class="{'active' : $route.current.activetab == 'event'}"><a href="#/event">Événement</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" ng-show="user.personId">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstName}} {{user.lastName}} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><button class="btn btn-default btn-xs flat-bottom" ng-click="myAccount()">
+                  <i class="glyphicon glyphicon-cog"></i>&nbspMon Compte
+                </button></li>
+                <li role="separator" class="divider"></li>
+                <li><button class="btn btn-danger btn-xs flat-top" ng-click="logout()">
+                  <i class="glyphicon glyphicon-log-out"></i>&nbspDéconnexion
+                </button></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
     <!-- Add your site or application content here -->
     <div class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
