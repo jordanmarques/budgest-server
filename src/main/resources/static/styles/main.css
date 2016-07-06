@@ -152,11 +152,16 @@ body {
  color: #a84342;
 }
 
-.dropdown-menu {
+/* Remove by fc 06/07/2016 */
+/*.dropdown-menu {
   left: 50%;
   right: auto;
   text-align: center;
   transform: translate(-50%, 0);
+}*/
+
+.dropdown-menu {
+  text-align: center;
 }
 
 .circle-multiline {
