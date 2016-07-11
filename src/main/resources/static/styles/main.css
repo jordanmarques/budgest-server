@@ -1,3 +1,17 @@
+/*
+cp : computer
+mb : mobile
+*/
+
+/* fix for navbar-bottom-fixed */
+
+body {
+  padding: 0;
+}
+
+body {
+  padding-bottom: 25px;
+}
 .container {
   width: auto;
   max-width: 680px;
@@ -21,10 +35,6 @@
 .footer-custom{
   margin-top: -10px;
   margin-bottom: 5px;
-}
-
-body {
-  padding: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -110,6 +120,11 @@ body {
   margin-left: 5px;
 }
 
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -130,6 +145,29 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+
+  /* pull the content right on computer*/
+  .pull-right-cp{
+    float: right !important;
+  }
+}
+
+
+/* Responsive: Phones */
+@media screen and (max-width: 768px) {
+  /* more space between content and footer*/
+  /*.jumbotron {
+    margin-bottom: 50px;
+  }*/
+
+  .col-centered-mb{
+    float: none;
+    margin: 0 auto;
+  }
+
+  .pull-center-mb{
+    text-align: center;
   }
 }
 
