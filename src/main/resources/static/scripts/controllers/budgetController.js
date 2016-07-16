@@ -50,6 +50,20 @@ angular.module('budGestApp')
       };
 
       $scope.updateBudget = function(person, budget){
+          var datePattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
+
+          var convertedstart = moment(budget.start, 'x', true).format('DD/MM/YYYY');
+          if(!datePattern.test(convertedstart)){
+              alert("date de début non valide");
+              return;
+          }
+
+          var convertedend = moment(budget.end, 'x', true).format('DD/MM/YYYY');
+          if(!datePattern.test(convertedend)){
+              alert("date de fin non valide");
+              return;
+          }
+
           delete person.budgets;
           budget.manager = person;
           
