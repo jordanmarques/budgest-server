@@ -15,14 +15,14 @@
                     <tr>
                         <th>Nom</th>
                         <th>Montant</th>
-                        <th>Nombre de Participant(s)</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr class="pointer" ng-repeat="event in person.events | orderBy:'name'" ng-click="sendToDetailView(event)">
                         <td>{{event.name}}</td>
-                        <td>{{event.amount}}</td>
-                        <td>{{event.atendees.length}}</td>
+                        <td>{{event.amount}}&nbsp;€</td>
+                        <td title="participants"><i class="fa fa-child" aria-hidden="true"></i>&nbsp;{{event.atendees.length}}</td>
                     </tr>
                     </tbody>
                 </table>

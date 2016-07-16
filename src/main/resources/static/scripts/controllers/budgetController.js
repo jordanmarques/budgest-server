@@ -44,6 +44,7 @@ angular.module('budGestApp')
           BudgetService.delete(budget).success(function(){
               $scope.person = person;
               $cookies.putObject('user', person);
+              $scope.editMode = false;
               delete $scope.detailBudget;
           })
       };

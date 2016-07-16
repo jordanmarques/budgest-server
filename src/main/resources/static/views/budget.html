@@ -22,7 +22,7 @@
                     <tr class="pointer" ng-repeat="budget in person.budgets | orderBy:'name'"
                         ng-click="sendToDetailView(budget)">
                         <td>{{budget.name}}</td>
-                        <td>{{budget.globalAmount}}</td>
+                        <td>{{budget.globalAmount}}&nbsp;€</td>
                     </tr>
                     </tbody>
                 </table>
@@ -55,9 +55,17 @@
             </div>
             <div class="panel-body">
                 <div class="col-sm-6">
-                    <h3 class="pull-center-mb" ng-hide="editMode">{{detailBudget.name}}</h3>
-                    <input ng-model="editedBudget.name" ng-show="editMode">
+                    <h3 class="pull-center-mb" ng-hide="editMode">{{detailBudget.name}}&nbsp;<span class="label label-danger">{{detailBudget.category}}</span></h3>
+                    <input ng-model="editedBudget.name" ng-show="editMode"><input ng-model="editedBudget.category" ng-show="editMode">
+                    <div>
+                        <span ng-hide="editMode" ng-show="detailBudget.start">début: {{detailBudget.start | date:"dd/MM/yyyy"}}</span>
+                        <span ng-show="detailBudget.start && !editMode"> - </span>
+                        <span ng-show ="detailBudget.end" ng-hide="editMode">fin: {{detailBudget.end | date:"dd/MM/yyyy"}}</span>
+                        <input datepicker date-formatter type="text" class="form-control" ng-model="editedBudget.start" ng-disabled="!editMode" ng-show="editMode"/>
+                        <input datepicker date-formatter type="text" class="form-control" ng-model="editedBudget.end" ng-disabled="!editMode" ng-show="editMode"/>
+                    </div>
                 </div>
+
                 <div class="col-sm-6">
                     <div class="pull-right-cp">
                             <div class="circle-multiline">
@@ -88,9 +96,22 @@
                                ng-model="modalbudget.name" required>
                     </div>
                     <div class="form-group">
+                        <label class="control-label" for="inputBudgetCategory">Catégorie*</label>
+                        <input type="text" id="inputBudgetCategory" class="form-control margin-bot-5"
+                               ng-model="modalbudget.category" required>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label" for="inputBudgetAmount">Montant*</label>
                         <input type="number" id="inputBudgetAmount" class="form-control margin-bot-5"
                                ng-model="modalbudget.globalAmount" required>
+                    </div>
+                    <div class ="form-group">
+                        <label class="control-label"> Date de début</label>
+                        <input datepicker date-formatter type="text" class="form-control" ng-model="modalbudget.start" required/>
+                    </div>
+                    <div class ="form-group">
+                        <label class="control-label"> Date de fin</label>
+                        <input datepicker date-formatter type="text" class="form-control" ng-model="modalbudget.end" required/>
                     </div>
                 </form>
             </div>
