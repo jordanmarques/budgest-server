@@ -57,12 +57,14 @@
                 <div class="col-sm-6">
                     <h3 class="pull-center-mb" ng-hide="editMode">{{detailBudget.name}}&nbsp;<span class="label label-danger">{{detailBudget.category}}</span></h3>
                     <input ng-model="editedBudget.name" ng-show="editMode"><input ng-model="editedBudget.category" ng-show="editMode">
+                    <input  datepicker date-formatter class="hidden-sm hidden-md hidden-lg" type="text" ng-model="editedBudget.start" ng-show="editMode"/>
+                    <input  datepicker date-formatter class="hidden-sm hidden-md hidden-lg" type="text" ng-model="editedBudget.end" ng-show="editMode"/>
                     <div>
-                        <span ng-hide="editMode" ng-show="detailBudget.start">début: {{detailBudget.start | date:"dd/MM/yyyy"}}</span>
-                        <span ng-show="detailBudget.start && !editMode"> - </span>
-                        <span ng-show ="detailBudget.end" ng-hide="editMode">fin: {{detailBudget.end | date:"dd/MM/yyyy"}}</span>
-                        <input datepicker date-formatter type="text" class="form-control" ng-model="editedBudget.start" ng-disabled="!editMode" ng-show="editMode"/>
-                        <input datepicker date-formatter type="text" class="form-control" ng-model="editedBudget.end" ng-disabled="!editMode" ng-show="editMode"/>
+                        <span ng-hide="editMode" ng-show="detailBudget.start">début:&nbsp;{{detailBudget.start | date:"dd/MM/yyyy"}}</span>
+                        <span ng-show="detailBudget.start && !editMode">&nbsp;-&nbsp; </span>
+                        <span ng-show ="detailBudget.end" ng-hide="editMode">fin:&nbsp;{{detailBudget.end | date:"dd/MM/yyyy"}}</span>
+                        <input datepicker date-formatter  class="hidden-xs" type="text" ng-model="editedBudget.start" ng-show="editMode"/>
+                        <input datepicker date-formatter class="hidden-xs" type="text" ng-model="editedBudget.end" ng-show="editMode"/>
                     </div>
                 </div>
 
