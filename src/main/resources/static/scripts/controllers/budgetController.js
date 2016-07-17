@@ -22,12 +22,19 @@ angular.module('budGestApp')
       });
 
       $scope.saveBudget = function(person){
+
+          if($scope.modalbudget.globalAmount < 0){
+              alert("Un budget ne peut pas être négatif")
+              return;
+          }
+
           person.budgets.push($scope.modalbudget);
 
           PersonService.upsert(person).success(function(data){
               $scope.person = data;
               $cookies.putObject('user', data);
               delete $scope.modalbudget;
+              $('#budgetCreationModal').modal('hide');
           })
       };
 
@@ -61,6 +68,11 @@ angular.module('budGestApp')
           var convertedend = moment(budget.end, 'x', true).format('DD/MM/YYYY');
           if(!datePattern.test(convertedend)){
               alert("date de fin non valide");
+              return;
+          }
+
+          if(budget.globalAmount < 0){
+              alert("Un budget ne peut pas être négatif")
               return;
           }
 
