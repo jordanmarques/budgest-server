@@ -72,7 +72,7 @@
                         <i class="glyphicon glyphicon-edit"></i>&nbspAnnuler
                     </button>
 
-                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="updateEvent(person, editedBudget)">
+                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="updateEvent(person, editedEvent)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspSauvegarder
                     </button>
                     <button class="btn btn-xs btn-danger pull-right flat-right" ng-show="editMode" ng-click="deleteEvent(person, detailEvent)">
@@ -83,23 +83,38 @@
             <div class="panel-body">
                 <div class="col-sm-6">
                     <div>
-                        <h3 ng-hide="editMode">{{detailEvent.name}}</h3>
-                        <input ng-model="editedBudget.name" ng-show="editMode">
+                        <h3 ng-hide="editMode">{{detailEvent.name}}&nbsp;<span class="label label-danger">{{detailEvent.category}}</span></h3>
+                        <input ng-model="editedEvent.name" ng-show="editMode"><input ng-model="editedEvent.category" ng-show="editMode">
+                        <input  datepicker date-formatter class="hidden-sm hidden-md hidden-lg" type="text" ng-model="editedEvent.start" ng-show="editMode"/>
+                        <input  datepicker date-formatter class="hidden-sm hidden-md hidden-lg" type="text" ng-model="editedEvent.end" ng-show="editMode"/>
+                        <div>
+                            <span ng-hide="editMode" ng-show="detailEvent.start">début:&nbsp;{{detailEvent.start | date:"dd/MM/yyyy"}}</span>
+                            <span ng-show="detailEvent.start && !editMode">&nbsp;-&nbsp; </span>
+                            <span ng-show ="detailEvent.end" ng-hide="editMode">fin:&nbsp;{{detailEvent.end | date:"dd/MM/yyyy"}}</span>
+                            <input datepicker date-formatter  class="hidden-xs" type="text" ng-model="editedEvent.start" ng-show="editMode"/>
+                            <input datepicker date-formatter class="hidden-xs" type="text" ng-model="editedEvent.end" ng-show="editMode"/>
+                        </div>
                     </div>
-
+                    <br>
                     <div class="row">
                         <div class="col-sm-10">
                             <div class="panel panel-default">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">
                                     <span>Participants</span>
-                                    <button class="btn btn-xs btn-default pull-right" ng-click="triggerModal()">
+                                    <button class="btn btn-xs btn-default pull-right" ng-click="triggerModal()" ng-show="!editMode">
                                         <i class="glyphicon glyphicon-plus"></i>&nbsp Inviter
                                     </button>
                                 </div>
                                 <!-- List group -->
                                 <ul class="list-group" ng-repeat="detailPerson in detailEvent.atendees">
-                                    <li class="list-group-item">{{detailPerson.lastName}} {{detailPerson.firstName}}</li>
+                                    <li class="list-group-item">
+                                        {{detailPerson.lastName}} {{detailPerson.firstName}}
+                                        <i class="glyphicon glyphicon glyphicon-remove pull-right pointer"
+                                           title="exclure de l'événement"
+                                           ng-show=" !editMode && detailEvent.ownerId == person.personId && detailEvent.ownerId != detailPerson.id"
+                                           ng-click="kick(detailPerson)"></i>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -109,7 +124,7 @@
                     <div class="pull-right">
                         <div class="circle-multiline ">
                             <span style="font-size: 2.5em" ng-hide="editMode">{{detailEvent.amount}}&nbsp€</span>
-                            <input type="number" ng-model="editedBudget.amount" ng-show="editMode">
+                            <input type="number" ng-model="editedEvent.amount" ng-show="editMode">
                         </div>
                     </div>
                 </div>
@@ -132,14 +147,26 @@
                         <input type="text" id="inputBudgetName" class="form-control margin-bot-5" ng-model="modalevent.name" required>
                     </div>
                     <div class="form-group">
+                        <label class="control-label" for="inputBudgetCategory">Catégorie*</label>
+                        <input type="text" id="inputBudgetCategory" class="form-control margin-bot-5"
+                               ng-model="modalevent.category" required>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label" for="inputBudgetAmount">Montant*</label>
                         <input type="number" id="inputBudgetAmount" class="form-control margin-bot-5" ng-model="modalevent.amount" required>
+                    </div>
+                    <div class ="form-group">
+                        <label class="control-label"> Date de début</label>
+                        <input datepicker date-formatter type="text" class="form-control" ng-model="modalevent.start" ng-pattern="/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/" required/>
+                    </div>
+                    <div class ="form-group">
+                        <label class="control-label"> Date de fin</label>
+                        <input datepicker date-formatter type="text" class="form-control" ng-model="modalevent.end" ng-pattern="/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/" required/>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning btn-sm"
-                        data-dismiss="modal"
                         ng-click="saveEvent(person)"
                         ng-disabled="eventCreationForm.$invalid">
                     <i class="glyphicon glyphicon-plus"></i>&nbspCréer l'événement

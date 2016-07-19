@@ -15,8 +15,10 @@ public class Atendee {
     private String pseudo;
     private String phoneNumber;
     private String mail;
+    private Long id;
 
     public Atendee(Person person){
+        this.id = person.getPersonId();
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
         this.pseudo = person.getPseudo();

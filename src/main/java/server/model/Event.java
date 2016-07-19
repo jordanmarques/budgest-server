@@ -14,6 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,6 +45,18 @@ public class Event {
     @Column(name = "id_owner")
     @NotNull
     private Long ownerId;
+
+    @Column(name = "category")
+    @NotEmpty(message = "a budget must have a category")
+    private String category;
+
+    @Column(name = "start")
+    @NotNull(message = "a budget must have a begining date")
+    private Date start;
+
+    @Column(name = "end")
+    @NotNull(message = "a budget must have a ending date")
+    private Date end;
 
     @JsonBackReference
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "events")

@@ -23,8 +23,8 @@ angular.module('budGestApp')
 
       $scope.saveBudget = function(person){
 
-          if($scope.modalbudget.globalAmount < 0){
-              alert("Un budget ne peut pas être négatif")
+          if($scope.modalbudget.globalAmount < 1){
+              alert("Un budget doit avoir un montant minimal de 1 euro")
               return;
           }
 
@@ -71,8 +71,13 @@ angular.module('budGestApp')
               return;
           }
 
-          if(budget.globalAmount < 0){
-              alert("Un budget ne peut pas être négatif")
+          if(budget.globalAmount < 1){
+              alert("Un budget doit avoir un montant minimal de 1 euro")
+              return;
+          }
+
+          if(budget.category == ""){
+              alert("Un budget doit avoir une catégorie")
               return;
           }
 

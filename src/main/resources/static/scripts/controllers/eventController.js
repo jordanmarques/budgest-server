@@ -32,6 +32,12 @@ angular.module('budGestApp')
       }
 
       $scope.saveEvent = function(person){
+
+          if($scope.modalevent.amount < 1){
+              alert("Un budget d'événement doit avoir un montant minimal de 1 euro")
+              return;
+          }
+
           $scope.modalevent.ownerId = person.personId;
           person.events.push($scope.modalevent);
 
@@ -40,6 +46,7 @@ angular.module('budGestApp')
                   $scope.person = data2;
                   $cookies.putObject('user', data);
                   delete $scope.modalevent;
+                  $('#eventCreationModal').modal('hide');
               });
 
               
@@ -61,12 +68,23 @@ angular.module('budGestApp')
           EventService.delete(event).success(function(){
               $scope.person = person;
               $cookies.putObject('user', person);
+              $scope.editMode = false;
               delete $scope.detailEvent;
           })
       };
 
       $scope.updateEvent = function(person, event){
           delete person.events;
+
+          if(event.amount < 1){
+              alert("Un budget d'événement doit avoir un montant minimal de 1 euro")
+              return;
+          }
+
+          if(event.category == ""){
+              alert("Un événement doit avoir une catégorie")
+              return;
+          }
 
           EventService.upsert(event).success(function(){
               PersonService.getById(person.personId).success(function(data){
@@ -87,9 +105,9 @@ angular.module('budGestApp')
       };
       
       $scope.edit = function(event){
-          delete $scope.editedBudget;
+          delete $scope.editedEvent;
           $scope.editMode = true;
-          $scope.editedBudget = angular.copy(event);
+          $scope.editedEvent = angular.copy(event);
       };
 
       $scope.triggerModal = function(){
@@ -161,6 +179,28 @@ angular.module('budGestApp')
                   $cookies.putObject('user', data);
                   delete $scope.detailEvent;
               });
+          })
+      }
+
+      $scope.kick = function(person){
+          if(!confirm("Êtes vous sûr de vouloir retirer cet personne de l'événement ?")) return;
+          PersonService.getById(person.id).success(function(data){
+              var dbPerson = data;
+              dbPerson.events.forEach(function(e){
+                  if(e.eventId == $scope.detailEvent.eventId){
+                      dbPerson.events.splice(dbPerson.events.indexOf(e),1);
+
+                      $scope.detailEvent.atendees.forEach(function (p) {
+                          if(p.id == person.id){
+                              $scope.detailEvent.atendees.splice($scope.detailEvent.atendees.indexOf(p),1)
+                          }
+                      })
+
+                      PersonService.upsert(dbPerson).success(function(data){
+
+                      })
+                  }
+              })
           })
       }
 

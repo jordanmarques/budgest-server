@@ -21,7 +21,7 @@
                     <tbody>
                     <tr class="pointer" ng-repeat="budget in person.budgets | orderBy:'name'"
                         ng-click="sendToDetailView(budget)">
-                        <td>{{budget.name}}</td>
+                        <td>{{budget.name}}&nbsp;<span class="label label-danger">{{budget.category}}</span></td>
                         <td>{{budget.globalAmount}}&nbsp;€</td>
                     </tr>
                     </tbody>
