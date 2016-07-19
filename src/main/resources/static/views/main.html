@@ -26,7 +26,7 @@
       <span ng-show="!registeredMode">
         <a class="pointer" ng-click="registeredMode = true; loginError = false; creationSuccess = false;"> Pas encore inscrit ? inscrit toi vite !</a>
 
-        <button class="btn btn-warning" ng-click="login(person)">
+        <button class="btn btn-warning pull-right" ng-click="login(person)">
           <i class="glyphicon glyphicon-log-in"></i>
           &nbsp;Connexion
         </button>
@@ -61,6 +61,10 @@
           <label class="control-label" for="inputBirthDate">Date de naissance</label>
           <input type="date" id="inputBirthDate" class="form-control margin-bot-5" ng-model="person.birthdate">
         </div>
+
+        <button ng-click="registeredMode = false" class="btn btn-default">
+          <
+        </button>
 
         <button type="submit" class="btn btn-primary pull-right"
                 ng-click="register(person)"
