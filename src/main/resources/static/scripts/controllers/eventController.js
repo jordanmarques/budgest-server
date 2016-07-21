@@ -181,7 +181,9 @@ angular.module('budGestApp')
       
       $scope.invitPersons = function(){
           $scope.invitList.forEach(function(invit){
-              InvitationService.save(invit)
+              InvitationService.save(invit).success(function (data) {
+                  $scope.invitList = [];
+              })
           });
           $('#invitModal').modal('hide');
       };
