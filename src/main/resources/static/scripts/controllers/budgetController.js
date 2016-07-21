@@ -94,6 +94,7 @@ angular.module('budGestApp')
       };
       
       $scope.sendToDetailView = function(budget){
+          $scope.editMode = false;
           $scope.detailBudget = angular.copy(budget);
       };
       
