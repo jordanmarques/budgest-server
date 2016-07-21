@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('budGestApp')
-  .controller('EventCtrl', function ($scope, $rootScope, $cookies, $q, $window, PersonService, EventService, Utils, InvitationService) {
+  .controller('EventCtrl', function ($scope, $rootScope, $cookies, $q, $interval, $window, PersonService, EventService, Utils, InvitationService) {
 
       $rootScope.user = ($cookies.getObject('user') || {});
       $scope.modalevent = {};
@@ -15,6 +15,7 @@ angular.module('budGestApp')
       PersonService.getById($rootScope.user.personId).success(function(data){
           $scope.person = data;
           getInvitations();
+          $interval(function(){getInvitations()}, 1000*5);
       });
 
 
@@ -24,11 +25,29 @@ angular.module('budGestApp')
               invitations.forEach(function(invit){
                   EventService.getById(invit.eventId).success(function(data){
                       data.invitId = invit.id;
-                      $scope.eventInvitations.push(data);
+                      
+                      if($scope.eventInvitations.length == 0){
+                          $scope.eventInvitations.push(data);
+                      } else if(!containsEvent($scope.eventInvitations, data)) {
+                          $scope.eventInvitations.push(data);
+                      }
+                      
+                      
+
                   })
               })
 
           });
+      }
+
+      function containsEvent(eventList, event){
+          var contain = false;
+          eventList.forEach(function(e){
+              if(e.eventId == event.eventId){
+                  contain = true;
+              }
+          })
+          return contain;
       }
 
       $scope.saveEvent = function(person){
@@ -101,6 +120,7 @@ angular.module('budGestApp')
       };
       
       $scope.sendToDetailView = function(event){
+          $scope.editMode = false;
           $scope.detailEvent = angular.copy(event);
       };
       
@@ -161,7 +181,9 @@ angular.module('budGestApp')
       
       $scope.invitPersons = function(){
           $scope.invitList.forEach(function(invit){
-              InvitationService.save(invit)
+              InvitationService.save(invit).success(function (data) {
+                  $scope.invitList = [];
+              })
           });
           $('#invitModal').modal('hide');
       };
