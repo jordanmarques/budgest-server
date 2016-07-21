@@ -35,7 +35,7 @@
                 <input type="password" class="form-control margin-bot-5" ng-model="confirmPassword" id="passwordConfirm" ng-class="{'input-error' : confirmPassword !== newPassword}">
             </div>
 
-            <button type="submit" class="btn btn-primary pull-right"
+            <button type="submit" class="btn btn-primary pull-right-cp"
                     ng-hide="newPassword == undefined || newPassword==''"
                     ng-click="changePassword()"
                     ng-disabled="newPassword !== confirmPassword">
