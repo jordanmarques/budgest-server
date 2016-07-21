@@ -4,7 +4,7 @@
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <h3 class="panel-title">Événements
-                    <button class="btn btn-xs btn-warning pull-right" data-toggle="modal" data-target="#eventCreationModal">
+                    <button class="btn btn-xs btn-warning pull-right-cp" data-toggle="modal" data-target="#eventCreationModal">
                         <i class="glyphicon glyphicon-plus"></i>&nbspNouvel Événement
                     </button>
                 </h3>
@@ -62,20 +62,20 @@
         <div class="panel panel-default" ng-show="detailEvent.name">
             <div class="panel-heading">
                 <h3 class="panel-title">Détail
-                    <button class="btn btn-xs btn-default pull-right" ng-hide="detailEvent.ownerId == person.personId " ng-click="leave(detailEvent)">
+                    <button class="btn btn-xs btn-default pull-right-cp" ng-hide="detailEvent.ownerId == person.personId " ng-click="leave(detailEvent)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspQuiter l'événement
                     </button>
-                    <button class="btn btn-xs btn-default pull-right" ng-show="!(editMode) && detailEvent.ownerId == person.personId " ng-click="edit(detailEvent)">
+                    <button class="btn btn-xs btn-default pull-right-cp" ng-show="!(editMode) && detailEvent.ownerId == person.personId " ng-click="edit(detailEvent)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspModifier
                     </button>
-                    <button class="btn btn-xs btn-default margin-left-5 pull-right" ng-show="editMode" ng-click="editMode = false">
+                    <button class="btn btn-xs btn-default margin-left-5 pull-right-cp" ng-show="editMode" ng-click="editMode = false">
                         <i class="glyphicon glyphicon-edit"></i>&nbspAnnuler
                     </button>
 
-                    <button class="btn btn-xs btn-success pull-right flat-left" ng-show="editMode" ng-click="updateEvent(person, editedEvent)">
+                    <button class="btn btn-xs btn-success pull-right-cp flat-left" ng-show="editMode" ng-click="updateEvent(person, editedEvent)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspSauvegarder
                     </button>
-                    <button class="btn btn-xs btn-danger pull-right flat-right" ng-show="editMode" ng-click="deleteEvent(person, detailEvent)">
+                    <button class="btn btn-xs btn-danger pull-right-cp flat-right" ng-show="editMode" ng-click="deleteEvent(person, detailEvent)">
                         <i class="glyphicon glyphicon-edit"></i>&nbspSupprimer
                     </button>
                 </h3>
